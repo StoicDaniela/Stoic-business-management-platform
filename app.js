@@ -1,4 +1,4 @@
-const users = {
+const users = },
     'admin@stoic11.com': {
         password: 'admin123',
         role: 'admin',
@@ -57,9 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeApp();
 });
 
-// =================================
-// 🚨 КОРИГИРАНА ФУНКЦИЯ: initializeApp
-// Включва инициализация на Client Profiles и Meeting Scheduler
+
 // =================================
 function initializeApp() {
     const path = window.location.pathname;
@@ -68,13 +66,13 @@ function initializeApp() {
         initAdminDashboard();
     } else if (path.includes('client-dashboard.html')) {
         initClientDashboard();
-    } else if (path.includes('client-profiles.html')) { // <-- ДОБАВЕНО
+    } else if (path.includes('client-profiles.html')) { // 
         loadClientProfiles(); 
         setupClientModalEvents(); 
-    } else if (path.includes('meeting-scheduler.html')) { // <-- ДОБАВЕНО
+    } else if (path.includes('meeting-scheduler.html')) { // 
         loadMeetingScheduler();
         setupMeetingModalEvents();
-        generateCalendar(); // <-- Трябва да се генерира при зареждане
+        generateCalendar(); // <
     } else {
         initLoginPage();
     }
@@ -137,7 +135,7 @@ function setupAdminDashboard() {
     const sidebarLinks = document.querySelectorAll('.sidebar-menu a');
     sidebarLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            // e.preventDefault(); // Премахнато, за да може да навигира към .html страниците
+            
             
             // Remove active class from all links
             sidebarLinks.forEach(l => l.classList.remove('active'));
