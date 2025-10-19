@@ -3,29 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - Stoic11</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Stoic11 | Admin Dashboard</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css"> 
 </head>
 <body>
     <div class="dashboard-container">
-        <!-- Sidebar -->
-        <nav class="sidebar">
-            <div class="sidebar-header">
-                <h2><i class="fas fa-chart-line"></i> Stoic11</h2>
-                <p>Admin Panel</p>
+        <aside class="sidebar">
+            <div class="logo">
+                <h1>STOIC11</h1>
             </div>
-            
-            <ul class="sidebar-menu">
-                <li><a href="#overview" class="active"><i class="fas fa-home"></i> Общ преглед</a></li>
-                <li><a href="#projects"><i class="fas fa-project-diagram"></i> Проекти</a></li>
-                <li><a href="client-profiles.html"><i class="fas fa-users"></i> Client Profiles</a></li>
-                <li><a href="meeting-scheduler.html"><i class="fas fa-calendar-alt"></i> Meeting Scheduler</a></li>
-                <li><a href="#analytics"><i class="fas fa-chart-bar"></i> Анализи</a></li>
-                <li><a href="#documents"><i class="fas fa-file-alt"></i> Документи</a></li>
-                <li><a href="#settings"><i class="fas fa-cog"></i> Настройки</a></li>
-                <li><a href="data-import.html"><i class="fas fa-database"></i> Data Management</a></li>
-            </ul>
+            <nav class="sidebar-menu">
+                <a href="admin-dashboard.html" class="active"><i class="fas fa-chart-line"></i> Табло</a>
+                <a href="client-profiles.html"><i class="fas fa-users"></i> CRM Клиенти</a>
+                <a href="projects.html"><i class="fas fa-tasks"></i> Проекти</a>
+                <a href="reports.html"><i class="fas fa-file-alt"></i> Отчети</a>
+                <a href="meeting-scheduler.html"><i class="fas fa-calendar-alt"></i> Срещи</a>
+            </nav>
+            <div class="sidebar-footer">
+                <button onclick="logout()"><i class="fas fa-sign-out-alt"></i> Изход</button>
+            </div>
             
             <div class="sidebar-footer">
                 <button onclick="logout()" class="logout-btn">
@@ -34,249 +34,163 @@
             </div>
         </nav>
         
-        <!-- Main Content -->
+       </aside>
+
         <main class="main-content">
-            <header class="content-header">
-                <h1>Добре дошли обратно, Администратор!</h1>
+            <header class="header">
+                <h2>Административно Табло</h2>
                 <div class="header-actions">
-                    <button class="btn btn-primary" onclick="openCreateProject()">
-                        <i class="fas fa-plus"></i> Нов проект
-                    </button>
-                    <div class="dropdown" style="position: relative; display: inline-block; margin-left: 10px;">
-                        <button class="btn btn-secondary" onclick="toggleDataMenu()" id="dataMenuBtn">
-                            <i class="fas fa-download"></i> Data ▼
-                        </button>
-                        <div id="dataDropdown" class="dropdown-content" style="display: none; position: absolute; background: white; min-width: 200px; box-shadow: 0 8px 16px rgba(0,0,0,0.2); z-index: 1; right: 0; border-radius: 8px; overflow: hidden;">
-                            <a href="#" onclick="exportClientsToExcel()" style="color: #333; padding: 12px 16px; text-decoration: none; display: block; border-bottom: 1px solid #eee;"><i class="fas fa-file-excel"></i> Export Clients</a>
-                            <a href="#" onclick="exportMeetingsToCalendar()" style="color: #333; padding: 12px 16px; text-decoration: none; display: block; border-bottom: 1px solid #eee;"><i class="fas fa-calendar"></i> Export Calendar</a>
-                            <a href="#" onclick="exportAllDataToExcel()" style="color: #333; padding: 12px 16px; text-decoration: none; display: block; border-bottom: 1px solid #eee;"><i class="fas fa-table"></i> Export All Data</a>
-                            <a href="#" onclick="exportFullBackup()" style="color: #333; padding: 12px 16px; text-decoration: none; display: block; border-bottom: 1px solid #eee;"><i class="fas fa-save"></i> Create Backup</a>
-                            <a href="data-import.html" style="color: #333; padding: 12px 16px; text-decoration: none; display: block;"><i class="fas fa-upload"></i> Import Data</a>
-                        </div>
+                    <button class="btn btn-secondary" onclick="exportFullBackup()"><i class="fas fa-cloud-download-alt"></i> Пълен Backup</button>
+                    <div class="user-profile">
+                        <span>Здравей, Администратор!</span>
+                        <i class="fas fa-user-circle"></i>
                     </div>
                 </div>
             </header>
-            
-            <!-- Stats Cards -->
-            <div class="stats-grid">
+
+            <section class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-icon"><i class="fas fa-project-diagram"></i></div>
-                    <div class="stat-info">
-                        <h3>12</h3>
-                        <p>Активни проекти</p>
-                    </div>
+                    <i class="fas fa-tasks icon-active"></i>
+                    <h4>Активни Проекти</h4>
+                    <h3 id="activeProjectsCount">2</h3>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-check-circle icon-completed"></i>
+                    <h4>Завършени Проекти</h4>
+                    <h3 id="completedProjectsCount">25</h3>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-user-tie icon-clients"></i>
+                    <h4>Общо Клиенти</h4>
+                    <h3 id="totalClientsCount">8</h3>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-euro-sign icon-revenue"></i>
+                    <h4>Прогнозирани Приходи</h4>
+                    <h3 id="totalRevenue">2.4М лв.</h3>
+                </div>
+            </section>
+
+            <section class="projects-section card">
+                <div class="section-header">
+                    <h3>Последни Проекти</h3>
+                    <button class="btn btn-primary" onclick="openCreateProject()">
+                        <i class="fas fa-plus"></i> Нов Проект
+                    </button>
                 </div>
                 
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="fas fa-users"></i></div>
-                    <div class="stat-info">
-                        <h3>8</h3>
-                        <p>Клиенти</p>
-                    </div>
-                </div>
-                
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
-                    <div class="stat-info">
-                        <h3>25</h3>
-                        <p>Завършени проекти</p>
-                    </div>
-                </div>
-                
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="fas fa-euro-sign"></i></div>
-                    <div class="stat-info">
-                        <h3>2.4M</h3>
-                        <p>Общ оборот (лв.)</p>
-                    </div>
-                </div>
-                
-                <div class="stat-card" onclick="showBackupInfo()" style="cursor: pointer;">
-                    <div class="stat-icon"><i class="fas fa-shield-alt"></i></div>
-                    <div class="stat-info">
-                        <h3 id="lastBackupTime">--</h3>
-                        <p>Последен backup</p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Recent Projects -->
-            <div class="content-section">
-                <h2>Последни проекти</h2>
-                <div class="projects-table">
-                    <table>
+                <div class="table-container">
+                    <table class="projects-table">
                         <thead>
                             <tr>
-                                <th>Проект</th>
+                                <th>Име</th>
                                 <th>Клиент</th>
                                 <th>Статус</th>
-                                <th>Напредък</th>
-                                <th>Крайна дата</th>
+                                <th>Прогрес</th>
+                                <th>Краен срок</th>
                                 <th>Действия</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Ресторант "Бистро"</td>
-                                <td>Иван Петров</td>
-                                <td><span class="status status-active">Активен</span></td>
-                                <td>
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" style="width: 75%"></div>
-                                    </div>
-                                    <span>75%</span>
-                                </td>
-                                <td>2025-11-15</td>
-                                <td>
-                                    <button class="btn btn-sm"><i class="fas fa-eye"></i></button>
-                                    <button class="btn btn-sm"><i class="fas fa-edit"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>IT Център</td>
-                                <td>TechCorp Ltd</td>
-                                <td><span class="status status-review">Преглед</span></td>
-                                <td>
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" style="width: 45%"></div>
-                                    </div>
-                                    <span>45%</span>
-                                </td>
-                                <td>2025-12-01</td>
-                                <td>
-                                    <button class="btn btn-sm"><i class="fas fa-eye"></i></button>
-                                    <button class="btn btn-sm"><i class="fas fa-edit"></i></button>
-                                </td>
-                            </tr>
+                            <tr><td colspan="6">Зареждане на данни...</td></tr>
                         </tbody>
                     </table>
                 </div>
-            </div>
+            </section>
+
+            <section class="quick-info-grid">
+                
+                <div class="quick-report card">
+                    <h3>Бърз Отчет</h3>
+                    <p>ROI (Среден): <span class="highlight">22.5%</span></p>
+                    <p>Breakeven (Среден): <span class="highlight">19 мес.</span></p>
+                    <button class="btn btn-info" onclick="exportAllDataToExcel()">
+                        <i class="fas fa-download"></i> Пълен Експорт
+                    </button>
+                </div>
+
+                <div class="backup-status card">
+                    <h3>Статус на Backup</h3>
+                    <p>Последно запазване: <span id="lastBackupTime">Никога</span></p>
+                    <p class="status-message">Системата е сигурна.</p>
+                </div>
+            </section>
+
         </main>
     </div>
-    
-    <!-- Create Project Modal -->
+
     <div id="createProjectModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>Създаване на нов проект</h2>
+                <h3>Създай Нов Проект</h3>
                 <span class="close" onclick="closeCreateProject()">&times;</span>
             </div>
             <form id="createProjectForm">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="projectName">Име на проект:</label>
-                        <input type="text" id="projectName" name="projectName" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="clientName">Клиент:</label>
-                        <input type="text" id="clientName" name="clientName" required>
-                    </div>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="projectType">Тип проект:</label>
-                        <select id="projectType" name="projectType" required>
-                            <option value="">Избери тип</option>
-                            <option value="restaurant">Ресторант/Заведение</option>
-                            <option value="retail">Търговски обект</option>
-                            <option value="tech">IT/Технологии</option>
-                            <option value="manufacturing">Производство</option>
-                            <option value="services">Услуги</option>
-                            <option value="other">Други</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="budget">Бюджет (лв.):</label>
-                        <input type="number" id="budget" name="budget" min="0" step="1000">
-                    </div>
-                </div>
                 
                 <div class="form-group">
-                    <label for="description">Описание:</label>
-                    <textarea id="description" name="description" rows="4"></textarea>
+                    <label for="projectName">Име на Проекта</label>
+                    <input type="text" id="projectName" name="projectName" required>
                 </div>
-                
-                <div class="form-row">
+
+                <div class="form-group">
+                    <label for="clientName">Клиент</label>
+                    <input type="text" id="clientName" name="clientName" required placeholder="Иван Петров">
+                </div>
+
+                <div class="form-group-grid">
                     <div class="form-group">
-                        <label for="startDate">Начална дата:</label>
+                        <label for="projectType">Тип Проект</label>
+                        <select id="projectType" name="projectType" required>
+                            <option value="restaurant">Ресторант</option>
+                            <option value="tech">IT / Технологии</option>
+                            <option value="realestate">Недвижими Имоти</option>
+                            <option value="finance">Финанси</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="budget">Бюджет (лв.)</label>
+                        <input type="number" id="budget" name="budget" required min="10000">
+                    </div>
+                </div>
+
+                <div class="form-group-grid">
+                    <div class="form-group">
+                        <label for="startDate">Начална Дата</label>
                         <input type="date" id="startDate" name="startDate" required>
                     </div>
-                    
+
                     <div class="form-group">
-                        <label for="endDate">Крайна дата:</label>
+                        <label for="endDate">Крайна Дата (Прогнозна)</label>
                         <input type="date" id="endDate" name="endDate" required>
                     </div>
                 </div>
-                
-                <div class="modal-actions">
-                    <button type="button" class="btn btn-secondary" onclick="closeCreateProject()">Отказ</button>
-                    <button type="submit" class="btn btn-primary">Създай проект</button>
+
+                <div class="form-group">
+                    <label for="description">Описание</label>
+                    <textarea id="description" name="description" rows="3"></textarea>
                 </div>
+
+                <button type="submit" class="btn btn-primary btn-full-width">Създай</button>
             </form>
         </div>
     </div>
-    
+
+
     <script src="app.js"></script>
-    <script src="data-export.js"></script>
+
     <script>
-        // Data Menu Toggle
-        function toggleDataMenu() {
-            const dropdown = document.getElementById('dataDropdown');
-            dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
-        }
-        
-        // Close dropdown when clicking outside
-        window.onclick = function(event) {
-            if (!event.target.matches('#dataMenuBtn') && !event.target.closest('#dataMenuBtn')) {
-                const dropdown = document.getElementById('dataDropdown');
-                dropdown.style.display = 'none';
-            }
-        };
-        
-        // Show backup info
-        function showBackupInfo() {
-            const lastBackup = localStorage.getItem('stoic11_backup_date');
-            if (lastBackup) {
-                const backupDate = new Date(lastBackup);
-                alert(`Последен backup: ${backupDate.toLocaleDateString('bg-BG')} в ${backupDate.toLocaleTimeString('bg-BG')}\n\nАвтоматичните backup-и се правят всеки 24 часа.\n\nМожете да направите ръчен backup от Data менюто.`);
-            } else {
-                alert('Все още няма направен backup.\n\nПрепоръчваме да направите backup от Data менюто.');
-            }
-        }
-        
-        // Update backup time display
         function updateBackupDisplay() {
-            const lastBackup = localStorage.getItem('stoic11_backup_date');
-            const displayElement = document.getElementById('lastBackupTime');
-            
-            if (lastBackup && displayElement) {
-                const backupDate = new Date(lastBackup);
-                const now = new Date();
-                const hoursDiff = Math.floor((now - backupDate) / (1000 * 60 * 60));
-                
-                if (hoursDiff < 1) {
-                    displayElement.textContent = 'Току-що';
-                } else if (hoursDiff < 24) {
-                    displayElement.textContent = `${hoursDiff}ч`;
-                } else {
-                    const daysDiff = Math.floor(hoursDiff / 24);
-                    displayElement.textContent = `${daysDiff}д`;
-                }
-            } else if (displayElement) {
-                displayElement.textContent = 'Няма';
+            const backupDate = localStorage.getItem('stoic11_backup_date');
+            if (backupDate) {
+                const formattedDate = new Date(backupDate).toLocaleDateString('bg-BG', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+                document.getElementById('lastBackupTime').textContent = formattedDate;
+            } else {
+                document.getElementById('lastBackupTime').textContent = 'Никога';
             }
         }
-        
-        // Initialize backup display on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            updateBackupDisplay();
-            // Update every minute
-            setInterval(updateBackupDisplay, 60000);
-        });
+        document.addEventListener('DOMContentLoaded', updateBackupDisplay);
     </script>
+    
 </body>
 </html>
