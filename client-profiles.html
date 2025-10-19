@@ -185,12 +185,55 @@
     </div>
 
     <script src="app.js"></script>
+    <script src="data-export.js"></script>
     <script>
         // Initialize client profiles page
         document.addEventListener('DOMContentLoaded', function() {
             loadClientProfiles();
             setupClientModalEvents();
+            
+            // Add export button to header
+            const headerActions = document.querySelector('.header-actions');
+            if (headerActions) {
+                const exportBtn = document.createElement('button');
+                exportBtn.className = 'btn btn-secondary';
+                exportBtn.innerHTML = '<i class="fas fa-download"></i> Export Clients';
+                exportBtn.onclick = exportClientsToExcel;
+                exportBtn.style.marginLeft = '10px';
+                headerActions.appendChild(exportBtn);
+                
+                // Add PDF report button for individual clients
+                const reportBtn = document.createElement('button');
+                reportBtn.className = 'btn btn-secondary';
+                reportBtn.innerHTML = '<i class="fas fa-file-pdf"></i> Generate Reports';
+                reportBtn.onclick = function() {
+                    alert('Select a client from the grid and use the "Generate PDF Report" option.');
+                };
+                reportBtn.style.marginLeft = '10px';
+                headerActions.appendChild(reportBtn);
+            }
         });
+        
+        // Override viewClientDetails to add PDF report option
+        const originalViewClientDetails = window.viewClientDetails;
+        window.viewClientDetails = function(clientId) {
+            const client = clientsData.find(c => c.id === clientId);
+            if (!client) return;
+            
+            const action = confirm(`Client: ${client.name}\n\nChoose action:\n- OK: View Details\n- Cancel: Generate PDF Report`);
+            
+            if (action) {
+                // Show details (original functionality)
+                if (originalViewClientDetails) {
+                    originalViewClientDetails(clientId);
+                } else {
+                    alert(`Client Details: ${client.name}\nEmail: ${client.email}\nCompany: ${client.company || 'N/A'}`);
+                }
+            } else {
+                // Generate PDF report
+                generateClientReport(clientId);
+            }
+        };
     </script>
 </body>
 </html>

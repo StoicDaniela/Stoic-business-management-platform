@@ -239,13 +239,50 @@
     </div>
 
     <script src="app.js"></script>
+    <script src="data-export.js"></script>
     <script>
         // Initialize meeting scheduler
         document.addEventListener('DOMContentLoaded', function() {
             loadMeetingScheduler();
             generateCalendar();
             setupMeetingModalEvents();
+            
+            // Add export button to header
+            const header = document.querySelector('.dashboard-header');
+            if (header) {
+                const headerActions = header.querySelector('.header-actions') || header;
+                
+                const exportBtn = document.createElement('button');
+                exportBtn.className = 'btn btn-secondary';
+                exportBtn.innerHTML = '<i class="fas fa-calendar-alt"></i> Export Calendar';
+                exportBtn.onclick = exportMeetingsToCalendar;
+                exportBtn.style.marginLeft = '10px';
+                headerActions.appendChild(exportBtn);
+                
+                const allDataBtn = document.createElement('button');
+                allDataBtn.className = 'btn btn-secondary';
+                allDataBtn.innerHTML = '<i class="fas fa-table"></i> Export All Data';
+                allDataBtn.onclick = exportAllDataToExcel;
+                allDataBtn.style.marginLeft = '10px';
+                headerActions.appendChild(allDataBtn);
+            }
         });
+        
+        // Add calendar export to view toggle functionality
+        const originalToggleView = window.toggleView;
+        if (originalToggleView) {
+            window.toggleView = function() {
+                originalToggleView();
+                
+                // Show notification about export options
+                const isListView = document.getElementById('listView').style.display !== 'none';
+                if (isListView) {
+                    setTimeout(() => {
+                        showNotification('Tip: Use "Export Calendar" to download meetings for external calendar apps! 📅', 'info');
+                    }, 1000);
+                }
+            };
+        }
     </script>
 </body>
 </html>
