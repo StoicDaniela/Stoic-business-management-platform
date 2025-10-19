@@ -1,6 +1,6 @@
 const users = {
     'admin@stoic11.com': {
-        password: 'slunce123',
+        password: 'admin321',
         role: 'admin',
         name: 'Администратор'
     },
