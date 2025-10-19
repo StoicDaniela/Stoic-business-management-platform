@@ -1,0 +1,50 @@
+{
+  "name": "business-management-platform",
+  "version": "2.0.0",
+  "description": "Professional Business Management Platform with Advanced CRM capabilities for financial consulting and project management",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "dev": "python -m http.server 8000",
+    "build": "echo 'No build process needed - static HTML/CSS/JS'",
+    "deploy": "gh-pages -d .",
+    "lint": "echo 'Linting complete - no linter configured'",
+    "test": "echo 'Testing complete - no tests configured'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/business-management-platform.git"
+  },
+  "keywords": [
+    "business-management",
+    "crm",
+    "project-management",
+    "financial-consulting",
+    "client-portal",
+    "meeting-scheduler",
+    "buyer-personas",
+    "dashboard",
+    "web-app",
+    "javascript",
+    "html5",
+    "css3",
+    "responsive-design"
+  ],
+  "author": "MiniMax Agent",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yourusername/business-management-platform/issues"
+  },
+  "homepage": "https://yourusername.github.io/business-management-platform",
+  "devDependencies": {
+    "gh-pages": "^4.0.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

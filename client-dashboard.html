@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Dashboard - Stoic11</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <nav class="sidebar client-sidebar">
+            <div class="sidebar-header">
+                <h2><i class="fas fa-chart-line"></i> Stoic11</h2>
+                <p>Клиентски портал</p>
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li><a href="#overview" class="active"><i class="fas fa-home"></i> Моят проект</a></li>
+                <li><a href="#metrics"><i class="fas fa-chart-bar"></i> Финансови показатели</a></li>
+                <li><a href="#timeline"><i class="fas fa-calendar-alt"></i> График</a></li>
+                <li><a href="#documents"><i class="fas fa-file-upload"></i> Документи</a></li>
+                <li><a href="#reports"><i class="fas fa-file-alt"></i> Отчети</a></li>
+                <li><a href="#communication"><i class="fas fa-comments"></i> Комуникация</a></li>
+            </ul>
+            
+            <div class="sidebar-footer">
+                <button onclick="logout()" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Изход
+                </button>
+            </div>
+        </nav>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="content-header">
+                <h1>Добре дошли, Иван Петров!</h1>
+                <div class="project-info">
+                    <h2>Проект: "Ресторант Бистро"</h2>
+                    <span class="status status-active">Активен</span>
+                </div>
+            </header>
+            
+            <!-- Project Progress -->
+            <div class="content-section">
+                <h2>Напредък по проекта</h2>
+                <div class="progress-overview">
+                    <div class="progress-circle">
+                        <svg width="120" height="120">
+                            <circle cx="60" cy="60" r="50" stroke="#e0e0e0" stroke-width="8" fill="none"/>
+                            <circle cx="60" cy="60" r="50" stroke="#4CAF50" stroke-width="8" fill="none" 
+                                    stroke-dasharray="314" stroke-dashoffset="78.5" transform="rotate(-90 60 60)"/>
+                        </svg>
+                        <div class="progress-text">
+                            <span class="progress-percentage">75%</span>
+                            <span class="progress-label">Завършено</span>
+                        </div>
+                    </div>
+                    
+                    <div class="milestones">
+                        <div class="milestone completed">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Първоначален анализ</span>
+                        </div>
+                        <div class="milestone completed">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Бизнес план</span>
+                        </div>
+                        <div class="milestone completed">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Финансово планиране</span>
+                        </div>
+                        <div class="milestone active">
+                            <i class="fas fa-clock"></i>
+                            <span>Изпълнение</span>
+                        </div>
+                        <div class="milestone pending">
+                            <i class="fas fa-circle"></i>
+                            <span>Финализиране</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Financial Metrics -->
+            <div class="content-section">
+                <h2>Ключови финансови показатели</h2>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <h3>ROI</h3>
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="metric-value positive">24.8%</div>
+                        <div class="metric-description">Възвръщаемост на инвестицията</div>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <h3>NPV</h3>
+                            <i class="fas fa-euro-sign"></i>
+                        </div>
+                        <div class="metric-value positive">142,500 лв.</div>
+                        <div class="metric-description">Нетна настояща стойност</div>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <h3>Break-even</h3>
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="metric-value">18 месеца</div>
+                        <div class="metric-description">Период на възвращаемост</div>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <h3>IRR</h3>
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                        <div class="metric-value positive">31.2%</div>
+                        <div class="metric-description">Вътрешна норма на възвращаемост</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Document Upload -->
+            <div class="content-section">
+                <h2>Качване на документи</h2>
+                <div class="upload-area">
+                    <div class="upload-zone" id="uploadZone">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Влачете файлове тук или натиснете за избор</p>
+                        <input type="file" id="fileInput" multiple hidden>
+                        <button onclick="document.getElementById('fileInput').click()" class="btn btn-primary">
+                            Избери файлове
+                        </button>
+                    </div>
+                    
+                    <div class="uploaded-files">
+                        <h4>Качени документи:</h4>
+                        <div class="file-list">
+                            <div class="file-item">
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Регистрация_фирма.pdf</span>
+                                <span class="file-date">15.10.2025</span>
+                            </div>
+                            <div class="file-item">
+                                <i class="fas fa-file-image"></i>
+                                <span>Скица_заведение.jpg</span>
+                                <span class="file-date">12.10.2025</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Next Steps -->
+            <div class="content-section">
+                <h2>Следващи стъпки</h2>
+                <div class="next-steps">
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Окончателно одобрение на бизнес плана</h4>
+                            <p>Очаква се до 25.10.2025</p>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Започване на практическото изпълнение</h4>
+                            <p>Планирано за 01.11.2025</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>
