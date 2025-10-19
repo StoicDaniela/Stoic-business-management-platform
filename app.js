@@ -1,4 +1,4 @@
-// Demo users database (in real app this would be on server)
+// users database (in real app this would be on server)
 const users = {
     'admin@stoic11.com': {
         password: 'admin123',
