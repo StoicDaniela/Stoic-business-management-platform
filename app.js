@@ -1,4 +1,5 @@
-const users = },
+// Demo users database (in real app this would be on server)
+const users = {
     'admin@stoic11.com': {
         password: 'admin123',
         role: 'admin',
@@ -57,8 +58,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeApp();
 });
 
-
-// =================================
 function initializeApp() {
     const path = window.location.pathname;
     
@@ -66,13 +65,6 @@ function initializeApp() {
         initAdminDashboard();
     } else if (path.includes('client-dashboard.html')) {
         initClientDashboard();
-    } else if (path.includes('client-profiles.html')) { // 
-        loadClientProfiles(); 
-        setupClientModalEvents(); 
-    } else if (path.includes('meeting-scheduler.html')) { // 
-        loadMeetingScheduler();
-        setupMeetingModalEvents();
-        generateCalendar(); // <
     } else {
         initLoginPage();
     }
@@ -135,7 +127,7 @@ function setupAdminDashboard() {
     const sidebarLinks = document.querySelectorAll('.sidebar-menu a');
     sidebarLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            
+            e.preventDefault();
             
             // Remove active class from all links
             sidebarLinks.forEach(l => l.classList.remove('active'));
@@ -170,11 +162,6 @@ function loadAdminData() {
     
     // Update stats
     updateAdminStats();
-    
-    // Update dashboard stats (since the HTML has hardcoded values, we'll override them)
-    // Note: The HTML is hardcoded, so this is just a console log for now
-    
-    // Update backup time display is handled by the script tag in the HTML file
 }
 
 function createProjectRow(project) {
@@ -212,14 +199,12 @@ function createProjectRow(project) {
 
 function updateAdminStats() {
     const activeProjects = projectsData.filter(p => p.status === 'active').length;
-    // Тъй като HTML-ът е с hardcoded стойности, само логваме за демо
-    console.log('Stats updated:', { activeProjects: activeProjects, completedProjects: 25, totalClients: 8, totalRevenue: 2.4 });
+    const completedProjects = 25; // Demo data
+    const totalClients = 8; // Demo data
+    const totalRevenue = 2.4; // Demo data in millions
     
-    // Ако искаш да актуализираш 'Активни проекти' от данните:
-    const activeProjectsElement = document.querySelector('.stats-grid .stat-card:nth-child(1) h3');
-    if (activeProjectsElement) {
-        activeProjectsElement.textContent = activeProjects;
-    }
+    // Update stat cards (in real app would query from database)
+    console.log('Stats updated:', { activeProjects, completedProjects, totalClients, totalRevenue });
 }
 
 // Client Dashboard Functions
@@ -246,7 +231,7 @@ function setupClientDashboard() {
     const sidebarLinks = document.querySelectorAll('.sidebar-menu a');
     sidebarLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            // e.preventDefault(); // Премахнато за навигация
+            e.preventDefault();
             
             // Remove active class from all links
             sidebarLinks.forEach(l => l.classList.remove('active'));
@@ -266,8 +251,7 @@ function setupClientDashboard() {
 
 function loadClientData() {
     // Load client's project data (demo - first project)
-    // Трябва да намериш проекта на текущия клиент (по име)
-    const clientProject = projectsData.find(p => p.client === currentUser.name);
+    const clientProject = projectsData[0];
     
     if (clientProject) {
         // Update progress circle
@@ -384,8 +368,7 @@ function handleCreateProject(e) {
         name: formData.get('projectName'),
         client: formData.get('clientName'),
         type: formData.get('projectType'),
-        // Парсване на бюджета като число, като се избягва празна стойност
-        budget: formData.get('budget') ? parseInt(formData.get('budget')) : 0, 
+        budget: parseInt(formData.get('budget')),
         description: formData.get('description'),
         startDate: formData.get('startDate'),
         endDate: formData.get('endDate'),
@@ -431,13 +414,11 @@ function editProject(projectId) {
 function logout() {
     localStorage.removeItem('currentUser');
     currentUser = null;
-    window.location.href = 'index.html'; // Предполагаме, че index.html е страницата за вход
+    window.location.href = 'index.html';
 }
 
 function formatDate(dateString) {
     const date = new Date(dateString);
-    // Добавяме +1 ден, за да избегнем UTC/Timezone грешки при парсване на дати
-    date.setDate(date.getDate() + 1); 
     return date.toLocaleDateString('bg-BG');
 }
 
@@ -522,20 +503,6 @@ const notificationCSS = `
     .notification-close:hover {
         opacity: 0.8;
     }
-    
-    .status-badge {
-        display: inline-block;
-        padding: 4px 8px;
-        border-radius: 4px;
-        font-size: 0.8em;
-        font-weight: bold;
-        color: white;
-        text-transform: uppercase;
-    }
-    
-    .status-scheduled { background-color: #3498db; }
-    .status-completed { background-color: #2ecc71; }
-    .status-cancelled { background-color: #e74c3c; }
 `;
 
 // Inject notification CSS
@@ -693,27 +660,14 @@ function editClient(clientId) {
     document.getElementById('clientCompany').value = client.company || '';
     document.getElementById('clientGoals').value = client.goals || '';
     document.getElementById('clientPainPoints').value = client.painPoints || '';
-    // Проверка за съществуване на елемента преди задаване на стойност
-    const clientBudgetEl = document.getElementById('clientBudget');
-    if (clientBudgetEl) clientBudgetEl.value = client.budget || '';
-    
-    const clientTimelineEl = document.getElementById('clientTimeline');
-    if (clientTimelineEl) clientTimelineEl.value = client.timeline || '';
-    
+    document.getElementById('clientBudget').value = client.budget || '';
+    document.getElementById('clientTimeline').value = client.timeline || '';
     document.getElementById('clientPersonality').value = client.personality || '';
     document.getElementById('meetingPrep').value = client.meetingPrep || '';
     document.getElementById('currentStatus').value = client.currentStatus || '';
     document.getElementById('nextActions').value = client.nextActions || '';
-    
-    // Елементите projectType и projectPhase могат да бъдат от други модали,
-    // затова използваме по-специфични ID-та, ако е възможно. 
-    // Тъй като ID-тата са дублирани, може да възникне проблем, 
-    // но за целите на поправката приемаме, че са в контекста на clientModal.
-    const projectTypeEl = document.getElementById('projectType');
-    if (projectTypeEl) projectTypeEl.value = client.projectType || '';
-    
-    const projectPhaseEl = document.getElementById('projectPhase');
-    if (projectPhaseEl) projectPhaseEl.value = client.projectPhase || '';
+    document.getElementById('projectType').value = client.projectType || '';
+    document.getElementById('projectPhase').value = client.projectPhase || '';
     
     // Store editing client ID
     modal.dataset.editingId = clientId;
@@ -734,10 +688,6 @@ function closeClientModal() {
 function setupClientModalEvents() {
     const modal = document.getElementById('clientModal');
     const form = document.getElementById('clientForm');
-    
-    // Ако модалът не съществува, спираме
-    if (!modal) return;
-    
     const closeBtn = modal.querySelector('.close');
     
     if (closeBtn) {
@@ -756,24 +706,21 @@ function saveClient() {
     const modal = document.getElementById('clientModal');
     const isEditing = modal.dataset.editingId;
     
-    // Вземане на стойностите с допълнителни проверки за съществуване на елементите
     const clientData = {
         name: document.getElementById('clientName').value,
         email: document.getElementById('clientEmail').value,
-        phone: document.getElementById('clientPhone')?.value || '',
-        company: document.getElementById('clientCompany')?.value || '',
-        goals: document.getElementById('clientGoals')?.value || '',
-        painPoints: document.getElementById('clientPainPoints')?.value || '',
-        budget: document.getElementById('clientBudget')?.value || '',
-        timeline: document.getElementById('clientTimeline')?.value || '',
-        personality: document.getElementById('clientPersonality')?.value || '',
-        meetingPrep: document.getElementById('meetingPrep')?.value || '',
-        currentStatus: document.getElementById('currentStatus')?.value || '',
-        nextActions: document.getElementById('nextActions')?.value || '',
-        // Тъй като тези ID-та са дублирани, трябва да се уверим, че взимаме правилните
-        projectType: document.getElementById('clientProjectType')?.value || '', 
-        projectPhase: document.getElementById('clientProjectPhase')?.value || ''
-        // Забележка: Препоръчително е да използваш уникални ID-та за полетата във всеки модал.
+        phone: document.getElementById('clientPhone').value,
+        company: document.getElementById('clientCompany').value,
+        goals: document.getElementById('clientGoals').value,
+        painPoints: document.getElementById('clientPainPoints').value,
+        budget: document.getElementById('clientBudget').value,
+        timeline: document.getElementById('clientTimeline').value,
+        personality: document.getElementById('clientPersonality').value,
+        meetingPrep: document.getElementById('meetingPrep').value,
+        currentStatus: document.getElementById('currentStatus').value,
+        nextActions: document.getElementById('nextActions').value,
+        projectType: document.getElementById('projectType').value,
+        projectPhase: document.getElementById('projectPhase').value
     };
     
     if (isEditing) {
@@ -797,16 +744,6 @@ function saveClient() {
     loadClientProfiles();
 }
 
-// 🚨 ДОБАВЕНА ФУНКЦИЯ: Показва детайли за клиента
-function viewClientDetails(clientId) {
-    const client = clientsData.find(c => c.id === clientId);
-    if (client) {
-        // В реално приложение тук се отваря модал с всички подробности
-        alert(`Профил на клиент: ${client.name}\n\nEmail: ${client.email}\nКомпания: ${client.company}\n\nЦели: ${client.goals}\nБолки: ${client.painPoints}\n\nСтатус: ${client.currentStatus}`);
-    }
-}
-
-
 // Meeting Scheduler Functions
 function loadMeetingScheduler() {
     updateMeetingStats();
@@ -817,54 +754,42 @@ function loadMeetingScheduler() {
 function updateMeetingStats() {
     const today = new Date().toISOString().split('T')[0];
     const thisWeekStart = new Date();
-    // Намиране на началото на седмицата (Неделя е 0)
     thisWeekStart.setDate(thisWeekStart.getDate() - thisWeekStart.getDay());
     const thisWeekEnd = new Date(thisWeekStart);
     thisWeekEnd.setDate(thisWeekEnd.getDate() + 6);
     
-    // Обновяваме данните в HTML-а
-    const todayMeetings = meetingsData.filter(m => m.date === today && m.status === 'scheduled').length;
+    const todayMeetings = meetingsData.filter(m => m.date === today).length;
     const weekMeetings = meetingsData.filter(m => {
         const meetingDate = new Date(m.date);
-        return meetingDate >= thisWeekStart && meetingDate <= thisWeekEnd && m.status === 'scheduled';
+        return meetingDate >= thisWeekStart && meetingDate <= thisWeekEnd;
     }).length;
     const upcomingMeetings = meetingsData.filter(m => m.date > today && m.status === 'scheduled').length;
     const completedMeetings = meetingsData.filter(m => m.status === 'completed').length;
     
-    const todayMeetingsEl = document.getElementById('todayMeetings');
-    if (todayMeetingsEl) todayMeetingsEl.textContent = todayMeetings;
-    
-    const weekMeetingsEl = document.getElementById('weekMeetings');
-    if (weekMeetingsEl) weekMeetingsEl.textContent = weekMeetings;
-    
-    const upcomingMeetingsEl = document.getElementById('upcomingMeetings');
-    if (upcomingMeetingsEl) upcomingMeetingsEl.textContent = upcomingMeetings;
-    
-    const completedMeetingsEl = document.getElementById('completedMeetings');
-    if (completedMeetingsEl) completedMeetingsEl.textContent = completedMeetings;
+    document.getElementById('todayMeetings').textContent = todayMeetings;
+    document.getElementById('weekMeetings').textContent = weekMeetings;
+    document.getElementById('upcomingMeetings').textContent = upcomingMeetings;
+    document.getElementById('completedMeetings').textContent = completedMeetings;
 }
 
 function generateCalendar() {
     const calendarGrid = document.getElementById('calendarGrid');
     if (!calendarGrid) return;
     
-    // Тук може да въведеш логика за превключване на месеците. Засега е само за текущия месец.
     const today = new Date();
     const currentMonth = today.getMonth();
     const currentYear = today.getFullYear();
     
     // Update month header
-    const monthNames = ['Януари', 'Февруари', 'Март', 'Април', 'Май', 'Юни',
-        'Юли', 'Август', 'Септември', 'Октомври', 'Ноември', 'Декември'];
-    
-    const currentMonthEl = document.getElementById('currentMonth');
-    if (currentMonthEl) currentMonthEl.textContent = `${monthNames[currentMonth]} ${currentYear}`;
+    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'];
+    document.getElementById('currentMonth').textContent = `${monthNames[currentMonth]} ${currentYear}`;
     
     // Clear calendar
     calendarGrid.innerHTML = '';
     
     // Add day headers
-    const dayHeaders = ['Нед', 'Пон', 'Вт', 'Ср', 'Чет', 'Пет', 'Съб'];
+    const dayHeaders = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     dayHeaders.forEach(day => {
         const header = document.createElement('div');
         header.className = 'calendar-day-header';
@@ -895,15 +820,14 @@ function generateCalendar() {
         }
         
         // Check for meetings on this date
-        // Забележка: Препоръчително е да се използва GMT, за да се избегнат проблеми с часовите зони
         const dateString = date.toISOString().split('T')[0];
-        const dayMeetings = meetingsData.filter(m => m.date === dateString && m.status === 'scheduled');
+        const dayMeetings = meetingsData.filter(m => m.date === dateString);
         
         if (dayMeetings.length > 0) {
             dayElement.classList.add('has-meeting');
             dayElement.innerHTML = `
                 <div>${date.getDate()}</div>
-                <div class="meeting-dot">${dayMeetings.length}</div>
+                <div class="meeting-dot"></div>
             `;
         } else {
             dayElement.textContent = date.getDate();
@@ -914,29 +838,11 @@ function generateCalendar() {
     }
 }
 
-// 🚨 ДОБАВЕНА ФУНКЦИЯ: Показва срещите за деня
-function showDayMeetings(dateString) {
-    const dayMeetings = meetingsData.filter(m => m.date === dateString);
-    let message = `Срещи на ${formatDate(dateString)}:\n\n`;
-    
-    if (dayMeetings.length === 0) {
-        alert(message + 'Няма насрочени срещи.');
-        return;
-    }
-    
-    dayMeetings.forEach(m => {
-        const statusText = m.status === 'scheduled' ? 'Насрочена' : 'Завършена';
-        message += `> [${statusText}] ${m.time} ч. с ${m.clientName} (${m.type.toUpperCase()})\n`;
-    });
-    
-    alert(message);
-}
-
 function loadClientOptions() {
     const select = document.getElementById('meetingClient');
     if (!select) return;
     
-    select.innerHTML = '<option value="">-- Избери клиент --</option>';
+    select.innerHTML = '<option value="">Select a client</option>';
     clientsData.forEach(client => {
         const option = document.createElement('option');
         option.value = client.id;
@@ -949,12 +855,8 @@ function loadClientOptions() {
     const clientId = urlParams.get('client');
     if (clientId) {
         select.value = clientId;
-        // Извикваме loadClientHints след задаване на стойност
         loadClientHints();
     }
-    
-    // Добавяме event listener, ако елементът съществува
-    select.onchange = loadClientHints;
 }
 
 function loadClientHints() {
@@ -964,10 +866,10 @@ function loadClientHints() {
     
     if (client && hintsSection) {
         hintsSection.style.display = 'block';
-        document.getElementById('clientGoalsHint').textContent = client.goals || 'Няма зададени цели';
-        document.getElementById('clientPainPointsHint').textContent = client.painPoints || 'Няма зададени проблеми';
-        document.getElementById('clientStatusHint').textContent = client.currentStatus || 'Няма текущ статус';
-        document.getElementById('clientNextActionsHint').textContent = client.nextActions || 'Няма предложени действия';
+        document.getElementById('clientGoalsHint').textContent = client.goals || 'No goals specified';
+        document.getElementById('clientPainPointsHint').textContent = client.painPoints || 'No pain points specified';
+        document.getElementById('clientStatusHint').textContent = client.currentStatus || 'No current status';
+        document.getElementById('clientNextActionsHint').textContent = client.nextActions || 'No suggested actions';
     } else if (hintsSection) {
         hintsSection.style.display = 'none';
     }
@@ -976,8 +878,6 @@ function loadClientHints() {
 function openScheduleMeetingModal() {
     const modal = document.getElementById('meetingModal');
     const form = document.getElementById('meetingForm');
-    
-    if (!modal) return;
     
     form.reset();
     
@@ -991,15 +891,12 @@ function openScheduleMeetingModal() {
 
 function closeMeetingModal() {
     const modal = document.getElementById('meetingModal');
-    if (modal) modal.style.display = 'none';
+    modal.style.display = 'none';
 }
 
 function setupMeetingModalEvents() {
     const modal = document.getElementById('meetingModal');
     const form = document.getElementById('meetingForm');
-    
-    if (!modal) return;
-    
     const closeBtn = modal.querySelector('.close');
     
     if (closeBtn) {
@@ -1019,7 +916,7 @@ function saveMeeting() {
     const client = clientsData.find(c => c.id === clientId);
     
     if (!client) {
-        alert('Моля, изберете клиент!');
+        alert('Please select a client');
         return;
     }
     
@@ -1041,34 +938,11 @@ function saveMeeting() {
     
     meetingsData.push(meetingData);
     
-    showNotification('Срещата е насрочена успешно!', 'success');
+    showNotification('Meeting scheduled successfully!', 'success');
     closeMeetingModal();
     updateMeetingStats();
     generateCalendar();
     loadMeetingsList();
-}
-
-// 🚨 ДОБАВЕНА ФУНКЦИЯ: Маркира среща като завършена
-function markMeetingCompleted(meetingId, event) {
-    // Спира разпространението на клика, за да не се извика viewMeetingDetails
-    if (event) event.stopPropagation();
-    
-    const meeting = meetingsData.find(m => m.id === meetingId);
-    if (meeting && meeting.status !== 'completed') {
-        meeting.status = 'completed';
-        showNotification(`Срещата с ${meeting.clientName} е маркирана като завършена.`, 'success');
-        loadMeetingsList(); // Презареждане на списъка
-        updateMeetingStats(); // Обновяване на статистиките
-        generateCalendar(); // Обновяване на календара
-    }
-}
-
-function viewMeetingDetails(meetingId) {
-    const meeting = meetingsData.find(m => m.id === meetingId);
-    if (meeting) {
-         // В реално приложение тук се отваря модал с всички подробности
-        alert(`Детайли за среща: \n\nКлиент: ${meeting.clientName}\nДата/Час: ${formatDate(meeting.date)} в ${meeting.time}\nМестоположение: ${meeting.location}\nДневен ред: ${meeting.agenda}\nСтатус: ${meeting.status.toUpperCase()}`);
-    }
 }
 
 function loadMeetingsList() {
@@ -1077,18 +951,12 @@ function loadMeetingsList() {
     
     container.innerHTML = '';
     
-    meetingsData
-        .sort((a, b) => new Date(`${b.date}T${b.time}`) - new Date(`${a.date}T${a.time}`)) // Сортиране по дата (последната първа)
-        .forEach(meeting => {
-            const meetingElement = createMeetingElement(meeting);
-            container.appendChild(meetingElement);
+    meetingsData.forEach(meeting => {
+        const meetingElement = createMeetingElement(meeting);
+        container.appendChild(meetingElement);
     });
 }
 
-// =================================
-// 🚨 ПОПРАВЕНА КРИТИЧНА ГРЕШКА
-// Функцията е завършена и затворена
-// =================================
 function createMeetingElement(meeting) {
     const element = document.createElement('div');
     element.className = `meeting-item ${meeting.status}`;
@@ -1097,13 +965,6 @@ function createMeetingElement(meeting) {
     const meetingDate = new Date(`${meeting.date}T${meeting.time}`);
     const formattedDate = meetingDate.toLocaleDateString('bg-BG');
     const formattedTime = meetingDate.toLocaleTimeString('bg-BG', { hour: '2-digit', minute: '2-digit' });
-
-    const statusText = meeting.status === 'scheduled' ? 'Насрочена' : 
-                       meeting.status === 'completed' ? 'Завършена' : 'Отменена';
-
-    const actionButton = meeting.status === 'scheduled' 
-        ? `<button class="btn-small btn-complete" onclick="markMeetingCompleted(${meeting.id}, event)">Отбележи като Завършена</button>`
-        : '';
     
     element.innerHTML = `
         <div class="meeting-header">
@@ -1111,12 +972,86 @@ function createMeetingElement(meeting) {
             <div class="meeting-time">${formattedDate} at ${formattedTime}</div>
         </div>
         <div class="meeting-client">👤 ${meeting.clientName}</div>
-        <div class="meeting-agenda">${meeting.agenda || 'Няма дневен ред'}</div>
-        <div style="margin-top: 10px; display: flex; align-items: center; justify-content: space-between;">
-            <span class="status-badge status-${meeting.status}">${statusText}</span>
-            ${actionButton}
+        <div class="meeting-agenda">${meeting.agenda || 'No agenda specified'}</div>
+        <div style="margin-top: 10px;">
+            <span class="status-${meeting.status}">${meeting.status.toUpperCase()}</span>
         </div>
     `;
     
     return element;
 }
+
+function toggleView() {
+    const calendarView = document.getElementById('calendarView');
+    const listView = document.getElementById('listView');
+    const toggleText = document.getElementById('viewToggleText');
+    
+    if (calendarView.style.display === 'none') {
+        calendarView.style.display = 'block';
+        listView.style.display = 'none';
+        toggleText.textContent = 'List View';
+    } else {
+        calendarView.style.display = 'none';
+        listView.style.display = 'block';
+        toggleText.textContent = 'Calendar View';
+    }
+}
+
+// Calendar navigation
+let currentCalendarDate = new Date();
+
+function previousMonth() {
+    currentCalendarDate.setMonth(currentCalendarDate.getMonth() - 1);
+    generateCalendar();
+}
+
+function nextMonth() {
+    currentCalendarDate.setMonth(currentCalendarDate.getMonth() + 1);
+    generateCalendar();
+}
+
+function showDayMeetings(date) {
+    const dayMeetings = meetingsData.filter(m => m.date === date);
+    
+    if (dayMeetings.length === 0) {
+        alert(`No meetings scheduled for ${date}`);
+        return;
+    }
+    
+    let message = `Meetings for ${date}:\n\n`;
+    dayMeetings.forEach(meeting => {
+        message += `${meeting.time} - ${meeting.clientName} (${meeting.type})\n`;
+    });
+    
+    alert(message);
+}
+
+function viewMeetingDetails(meetingId) {
+    const meeting = meetingsData.find(m => m.id === meetingId);
+    if (!meeting) return;
+    
+    alert(`Meeting Details:\n\nClient: ${meeting.clientName}\nType: ${meeting.type}\nDate: ${meeting.date}\nTime: ${meeting.time}\nLocation: ${meeting.location}\nAgenda: ${meeting.agenda}`);
+}
+
+function viewClientDetails(clientId) {
+    const client = clientsData.find(c => c.id === clientId);
+    if (!client) return;
+    
+    const clientMeetings = meetingsData.filter(m => m.clientId === clientId);
+    
+    let details = `Client Profile: ${client.name}\n\n`;
+    details += `📧 ${client.email}\n`;
+    details += `📱 ${client.phone}\n`;
+    details += `🏢 ${client.company}\n\n`;
+    details += `🎯 Goals: ${client.goals}\n\n`;
+    details += `⚠️ Pain Points: ${client.painPoints}\n\n`;
+    details += `💡 Smart Hints: ${client.meetingPrep}\n\n`;
+    details += `📊 Current Status: ${client.currentStatus}\n\n`;
+    details += `🔄 Next Actions: ${client.nextActions}\n\n`;
+    details += `📅 Meetings: ${clientMeetings.length} scheduled`;
+    
+    alert(details);
+}
+
+// Initialize everything when page loads
+console.log('CRM functionalities loaded successfully!');
