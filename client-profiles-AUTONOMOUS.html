@@ -270,6 +270,14 @@
             color: white;
         }
 
+        .client-info {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-left: 4px solid var(--accent-primary);
+        }
+        
         .client-info p {
             margin-bottom: 10px;
             padding: 8px 0;
@@ -280,12 +288,19 @@
             padding-top: 20px;
             border-top: 2px solid var(--border-color);
             transition: border-color 0.3s ease;
+            background: rgba(248, 249, 250, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px dashed var(--border-color);
         }
 
         .projects-section h4 {
             color: var(--accent-primary);
             margin-bottom: 15px;
             transition: color 0.3s ease;
+            font-size: 1.15em;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-color);
         }
 
         .project-item {
@@ -1413,6 +1428,177 @@
             font-size: 0.9em;
         }
 
+        /* 🔍 ЕТАП 10: РАЗШИРЕНО ФИЛТРИРАНЕ И ТЪРСЕНЕ */
+        .advanced-filter-panel {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            color: white;
+        }
+
+        .filter-panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .filter-panel-header h3 {
+            margin: 0;
+            font-size: 1.8em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-toggle-filters {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-toggle-filters:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .filter-group {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 15px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .filter-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+
+        .filter-group input,
+        .filter-group select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .filter-group input:focus,
+        .filter-group select:focus {
+            outline: none;
+            border-color: white;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
+        }
+
+        .filter-group input::placeholder {
+            color: #999;
+        }
+
+        .filter-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+        }
+
+        .btn-filter {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-apply-filters {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+        }
+
+        .btn-clear-filters {
+            background: rgba(255, 255, 255, 0.9);
+            color: #667eea;
+        }
+
+        .btn-filter:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .filter-results-summary {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-top: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .filter-results-count {
+            font-size: 1.5em;
+            color: #4CAF50;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .active-filters-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .filter-pill {
+            background: rgba(255, 255, 255, 0.9);
+            color: #667eea;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .filter-pill-close {
+            cursor: pointer;
+            font-weight: bold;
+            padding: 0 4px;
+            transition: color 0.3s ease;
+        }
+
+        .filter-pill-close:hover {
+            color: #e74c3c;
+        }
+
         /* 📊 ЕТАП 5: Визуализации и графики */
         .visualization-panel {
             background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
@@ -1635,7 +1821,10 @@
                 👤 Добави нов клиент
             </button>
             <button id="addProjectBtn" class="btn btn-secondary">
-                📊 Добави нов проект
+                📋 Добави нов проект
+            </button>
+            <button id="advancedFilterBtn" class="btn" style="background: linear-gradient(45deg, #667eea, #764ba2); color: white;" onclick="toggleAdvancedFilters()">
+                🔍 Разширено филтриране
             </button>
             <button id="clearBtn" class="btn" style="background: #ff6b6b; color: white;">
                 🗑️ Изчисти всичко
@@ -1735,6 +1924,99 @@
             <div class="stat-item">
                 <div class="stat-value" id="onHoldProjects">0</div>
                 <div class="stat-label">⏸️ Спрени</div>
+            </div>
+        </div>
+
+        <!-- 🔍 ЕТАП 10: Разширен панел за филтриране -->
+        <div class="advanced-filter-panel" id="advancedFilterPanel" style="display: none;">
+            <div class="filter-panel-header">
+                <h3>🔍 Разширено Филтриране и Търсене</h3>
+                <button class="btn-toggle-filters" id="btnCollapseFilters" onclick="toggleAdvancedFilters()">
+                    <span>▲</span>
+                    <span>Скрий</span>
+                </button>
+            </div>
+            
+            <!-- Активни филтри -->
+            <div class="active-filters-pills" id="activeFiltersPills">
+                <!-- Динамично съдържание -->
+            </div>
+            
+            <div class="filters-grid" id="filtersGrid">
+                <!-- Глобално търсене -->
+                <div class="filter-group">
+                    <label for="advancedSearch">🔍 Глобално търсене</label>
+                    <input type="text" id="advancedSearch" placeholder="Клиент, проект, екип...">
+                </div>
+                
+                <!-- Филтър по статус -->
+                <div class="filter-group">
+                    <label for="advancedStatus">📊 Статус на проект</label>
+                    <select id="advancedStatus">
+                        <option value="all">Всички</option>
+                        <option value="planning">📝 Планиране</option>
+                        <option value="active">✅ Активен</option>
+                        <option value="completed">✔️ Завършен</option>
+                        <option value="on-hold">⏸️ Спрян</option>
+                    </select>
+                </div>
+                
+                <!-- Филтър по тип проект -->
+                <div class="filter-group">
+                    <label for="advancedProjectType">🎯 Тип проект</label>
+                    <select id="advancedProjectType">
+                        <option value="all">Всички типове</option>
+                        <option value="website">🌐 Website</option>
+                        <option value="mobile">📱 Mobile App</option>
+                        <option value="desktop">💻 Desktop</option>
+                        <option value="cloud">☁️ Cloud</option>
+                        <option value="iot">🔌 IoT</option>
+                        <option value="other">📊 Друг</option>
+                    </select>
+                </div>
+                
+                <!-- Филтър по бюджет -->
+                <div class="filter-group">
+                    <label for="advancedBudgetMin">💰 Мин. бюджет (лв)</label>
+                    <input type="number" id="advancedBudgetMin" placeholder="0" min="0" step="1000">
+                </div>
+                
+                <div class="filter-group">
+                    <label for="advancedBudgetMax">💰 Макс. бюджет (лв)</label>
+                    <input type="number" id="advancedBudgetMax" placeholder="Неограничен" min="0" step="1000">
+                </div>
+                
+                <!-- Филтър по член на екип -->
+                <div class="filter-group">
+                    <label for="advancedTeamMember">👥 Член на екип</label>
+                    <input type="text" id="advancedTeamMember" placeholder="Име или телефон...">
+                </div>
+                
+                <!-- Филтър по период (начална дата) -->
+                <div class="filter-group">
+                    <label for="advancedStartDateFrom">📅 Начална дата от</label>
+                    <input type="date" id="advancedStartDateFrom">
+                </div>
+                
+                <div class="filter-group">
+                    <label for="advancedStartDateTo">📅 Начална дата до</label>
+                    <input type="date" id="advancedStartDateTo">
+                </div>
+            </div>
+            
+            <!-- Действия -->
+            <div class="filter-actions">
+                <button class="btn-filter btn-clear-filters" onclick="clearAdvancedFilters()">
+                    🚫 Изчисти всички
+                </button>
+                <button class="btn-filter btn-apply-filters" onclick="applyAdvancedFilters()">
+                    ✔️ Приложи филтри
+                </button>
+            </div>
+            
+            <!-- Резултати -->
+            <div class="filter-results-summary" id="filterResultsSummary" style="display: none;">
+                Намерени: <span class="filter-results-count" id="filterResultsCount">0</span> клиента / проекта
             </div>
         </div>
 
@@ -2769,6 +3051,300 @@
             debugLog('Екипни статистики:', teamStats);
         }
         
+        // 🔍 ЕТАП 10: РАЗШИРЕНО ФИЛТРИРАНЕ И ТЪРСЕНЕ
+        
+        // Обект за запазване на активните филтри
+        let advancedFilters = {
+            search: '',
+            status: 'all',
+            projectType: 'all',
+            budgetMin: null,
+            budgetMax: null,
+            teamMember: '',
+            startDateFrom: null,
+            startDateTo: null
+        };
+        
+        let isFilterActive = false;
+        
+        // Превключване на visibility на панела
+        function toggleAdvancedFilters() {
+            const panel = document.getElementById('advancedFilterPanel');
+            const btn = document.getElementById('btnCollapseFilters');
+            
+            if (panel.style.display === 'none') {
+                panel.style.display = 'block';
+                btn.innerHTML = '<span>▲</span><span>Скрий</span>';
+            } else {
+                panel.style.display = 'none';
+                btn.innerHTML = '<span>▼</span><span>Покажи</span>';
+            }
+        }
+        
+        // Изчистване на всички филтри
+        function clearAdvancedFilters() {
+            // Ресетваме обекта
+            advancedFilters = {
+                search: '',
+                status: 'all',
+                projectType: 'all',
+                budgetMin: null,
+                budgetMax: null,
+                teamMember: '',
+                startDateFrom: null,
+                startDateTo: null
+            };
+            
+            // Ресетваме формите
+            document.getElementById('advancedSearch').value = '';
+            document.getElementById('advancedStatus').value = 'all';
+            document.getElementById('advancedProjectType').value = 'all';
+            document.getElementById('advancedBudgetMin').value = '';
+            document.getElementById('advancedBudgetMax').value = '';
+            document.getElementById('advancedTeamMember').value = '';
+            document.getElementById('advancedStartDateFrom').value = '';
+            document.getElementById('advancedStartDateTo').value = '';
+            
+            isFilterActive = false;
+            
+            // Обновяваме изгледа
+            updateActiveFiltersPills();
+            displayClients();
+            
+            // Скриваме резултатите
+            document.getElementById('filterResultsSummary').style.display = 'none';
+            
+            updateStatusBanner('Всички филтри изчистени!', 'info');
+        }
+        
+        // Прилагане на филтри
+        function applyAdvancedFilters() {
+            // Събираме данните от формите
+            advancedFilters.search = document.getElementById('advancedSearch').value.trim().toLowerCase();
+            advancedFilters.status = document.getElementById('advancedStatus').value;
+            advancedFilters.projectType = document.getElementById('advancedProjectType').value;
+            advancedFilters.budgetMin = document.getElementById('advancedBudgetMin').value ? parseFloat(document.getElementById('advancedBudgetMin').value) : null;
+            advancedFilters.budgetMax = document.getElementById('advancedBudgetMax').value ? parseFloat(document.getElementById('advancedBudgetMax').value) : null;
+            advancedFilters.teamMember = document.getElementById('advancedTeamMember').value.trim().toLowerCase();
+            advancedFilters.startDateFrom = document.getElementById('advancedStartDateFrom').value;
+            advancedFilters.startDateTo = document.getElementById('advancedStartDateTo').value;
+            
+            // Проверяваме дали има активни филтри
+            isFilterActive = advancedFilters.search !== '' || 
+                           advancedFilters.status !== 'all' ||
+                           advancedFilters.projectType !== 'all' ||
+                           advancedFilters.budgetMin !== null ||
+                           advancedFilters.budgetMax !== null ||
+                           advancedFilters.teamMember !== '' ||
+                           advancedFilters.startDateFrom !== '' ||
+                           advancedFilters.startDateTo !== '';
+            
+            // Обновяваме изгледа
+            updateActiveFiltersPills();
+            const resultCount = displayClients();
+            
+            // Показваме резултатите
+            const summary = document.getElementById('filterResultsSummary');
+            const count = document.getElementById('filterResultsCount');
+            
+            if (isFilterActive) {
+                summary.style.display = 'block';
+                count.textContent = resultCount;
+                updateStatusBanner(`Филтри приложени! Намерени ${resultCount} резултата.`, 'success');
+            } else {
+                summary.style.display = 'none';
+                updateStatusBanner('Всички данни показани.', 'info');
+            }
+            
+            debugLog('Приложени филтри:', advancedFilters);
+        }
+        
+        // Обновяване на активните филтри (pills)
+        function updateActiveFiltersPills() {
+            const container = document.getElementById('activeFiltersPills');
+            const pills = [];
+            
+            if (advancedFilters.search) {
+                pills.push(`<div class="filter-pill">Търсене: "${advancedFilters.search}" <span class="filter-pill-close" onclick="removeFilter('search')">✕</span></div>`);
+            }
+            
+            if (advancedFilters.status !== 'all') {
+                const statusNames = {
+                    planning: '📝 Планиране',
+                    active: '✅ Активен',
+                    completed: '✔️ Завършен',
+                    'on-hold': '⏸️ Спрян'
+                };
+                pills.push(`<div class="filter-pill">Статус: ${statusNames[advancedFilters.status]} <span class="filter-pill-close" onclick="removeFilter('status')">✕</span></div>`);
+            }
+            
+            if (advancedFilters.projectType !== 'all') {
+                const typeNames = {
+                    website: '🌐 Website',
+                    mobile: '📱 Mobile',
+                    desktop: '💻 Desktop',
+                    cloud: '☁️ Cloud',
+                    iot: '🔌 IoT',
+                    other: '📊 Друг'
+                };
+                pills.push(`<div class="filter-pill">Тип: ${typeNames[advancedFilters.projectType]} <span class="filter-pill-close" onclick="removeFilter('projectType')">✕</span></div>`);
+            }
+            
+            if (advancedFilters.budgetMin !== null) {
+                pills.push(`<div class="filter-pill">Бюджет мин: ${formatCurrency(advancedFilters.budgetMin)} <span class="filter-pill-close" onclick="removeFilter('budgetMin')">✕</span></div>`);
+            }
+            
+            if (advancedFilters.budgetMax !== null) {
+                pills.push(`<div class="filter-pill">Бюджет макс: ${formatCurrency(advancedFilters.budgetMax)} <span class="filter-pill-close" onclick="removeFilter('budgetMax')">✕</span></div>`);
+            }
+            
+            if (advancedFilters.teamMember) {
+                pills.push(`<div class="filter-pill">Екип: "${advancedFilters.teamMember}" <span class="filter-pill-close" onclick="removeFilter('teamMember')">✕</span></div>`);
+            }
+            
+            if (advancedFilters.startDateFrom) {
+                pills.push(`<div class="filter-pill">Дата от: ${new Date(advancedFilters.startDateFrom).toLocaleDateString('bg-BG')} <span class="filter-pill-close" onclick="removeFilter('startDateFrom')">✕</span></div>`);
+            }
+            
+            if (advancedFilters.startDateTo) {
+                pills.push(`<div class="filter-pill">Дата до: ${new Date(advancedFilters.startDateTo).toLocaleDateString('bg-BG')} <span class="filter-pill-close" onclick="removeFilter('startDateTo')">✕</span></div>`);
+            }
+            
+            container.innerHTML = pills.join('');
+        }
+        
+        // Премахване на отделен филтър
+        function removeFilter(filterName) {
+            switch(filterName) {
+                case 'search':
+                    advancedFilters.search = '';
+                    document.getElementById('advancedSearch').value = '';
+                    break;
+                case 'status':
+                    advancedFilters.status = 'all';
+                    document.getElementById('advancedStatus').value = 'all';
+                    break;
+                case 'projectType':
+                    advancedFilters.projectType = 'all';
+                    document.getElementById('advancedProjectType').value = 'all';
+                    break;
+                case 'budgetMin':
+                    advancedFilters.budgetMin = null;
+                    document.getElementById('advancedBudgetMin').value = '';
+                    break;
+                case 'budgetMax':
+                    advancedFilters.budgetMax = null;
+                    document.getElementById('advancedBudgetMax').value = '';
+                    break;
+                case 'teamMember':
+                    advancedFilters.teamMember = '';
+                    document.getElementById('advancedTeamMember').value = '';
+                    break;
+                case 'startDateFrom':
+                    advancedFilters.startDateFrom = '';
+                    document.getElementById('advancedStartDateFrom').value = '';
+                    break;
+                case 'startDateTo':
+                    advancedFilters.startDateTo = '';
+                    document.getElementById('advancedStartDateTo').value = '';
+                    break;
+            }
+            
+            // Прилагаме филтрите отново
+            applyAdvancedFilters();
+        }
+        
+        // Функция за филтриране на клиентите
+        function filterClientProfiles(profiles) {
+            if (!isFilterActive) return profiles;
+            
+            return profiles.filter(profile => {
+                // Глобално търсене
+                if (advancedFilters.search) {
+                    const searchIn = [
+                        profile.client.name,
+                        profile.client.email,
+                        profile.client.company || '',
+                        ...profile.projects.map(p => p.name),
+                        ...profile.projects.flatMap(p => (p.team || []).map(m => m.name + ' ' + m.phone))
+                    ].join(' ').toLowerCase();
+                    
+                    if (!searchIn.includes(advancedFilters.search)) {
+                        return false;
+                    }
+                }
+                
+                // Филтър по статус на проект
+                if (advancedFilters.status !== 'all') {
+                    const hasMatchingStatus = profile.projects.some(p => p.status === advancedFilters.status);
+                    if (!hasMatchingStatus) return false;
+                }
+                
+                // Филтър по тип проект
+                if (advancedFilters.projectType !== 'all') {
+                    const hasMatchingType = profile.projects.some(p => (p.type || 'other') === advancedFilters.projectType);
+                    if (!hasMatchingType) return false;
+                }
+                
+                // Филтър по бюджет
+                if (advancedFilters.budgetMin !== null || advancedFilters.budgetMax !== null) {
+                    const hasMatchingBudget = profile.projects.some(p => {
+                        const budget = parseFloat(p.budget) || 0;
+                        
+                        if (advancedFilters.budgetMin !== null && budget < advancedFilters.budgetMin) {
+                            return false;
+                        }
+                        
+                        if (advancedFilters.budgetMax !== null && budget > advancedFilters.budgetMax) {
+                            return false;
+                        }
+                        
+                        return true;
+                    });
+                    
+                    if (!hasMatchingBudget) return false;
+                }
+                
+                // Филтър по член на екип
+                if (advancedFilters.teamMember) {
+                    const hasMatchingMember = profile.projects.some(p => {
+                        const team = p.team || [];
+                        return team.some(member => {
+                            const memberData = (member.name + ' ' + member.phone).toLowerCase();
+                            return memberData.includes(advancedFilters.teamMember);
+                        });
+                    });
+                    
+                    if (!hasMatchingMember) return false;
+                }
+                
+                // Филтър по начална дата
+                if (advancedFilters.startDateFrom || advancedFilters.startDateTo) {
+                    const hasMatchingDate = profile.projects.some(p => {
+                        if (!p.startDate) return false;
+                        
+                        const projectDate = new Date(p.startDate);
+                        
+                        if (advancedFilters.startDateFrom) {
+                            const fromDate = new Date(advancedFilters.startDateFrom);
+                            if (projectDate < fromDate) return false;
+                        }
+                        
+                        if (advancedFilters.startDateTo) {
+                            const toDate = new Date(advancedFilters.startDateTo);
+                            if (projectDate > toDate) return false;
+                        }
+                        
+                        return true;
+                    });
+                    
+                    if (!hasMatchingDate) return false;
+                }
+                
+                return true;
+            });
+        }
+        
         // 🐛 ДЕБЪГ ФУНКЦИИ
         function debugLog(message, data = null) {
             if (CONFIG.DEBUG) {
@@ -3647,6 +4223,11 @@
                 });
             }
             
+            // 🔍 ЕТАП 10: Разширено филтриране
+            if (isFilterActive) {
+                filtered = filterClientProfiles(filtered);
+            }
+            
             // Стъпка 3: Сортиране
             filtered.sort((a, b) => {
                 switch(sortOrder) {
@@ -3707,12 +4288,12 @@
 
             if (clientProfiles.length === 0) {
                 clientsGrid.innerHTML = '<div class="no-data">Няма добавени клиенти<br>Започнете с добавяне на нов клиент!</div>';
-                return;
+                return 0;
             }
             
             if (profilesToDisplay.length === 0) {
                 clientsGrid.innerHTML = '<div class="no-data">😕 Няма резултати<br>Опитайте с други критерии за търсене или филтри</div>';
-                return;
+                return 0;
             }
 
             profilesToDisplay.forEach((profile) => {
@@ -3788,7 +4369,7 @@
                                     return `
                                         <div class="project-item">
                                             <span class="project-name">
-                                                ${project.name}
+                                                <strong style="color: var(--accent-primary);">Проект ${pIndex + 1}:</strong> ${project.name}
                                                 ${project.endDate ? getDeadlineBadgeHTML(project.endDate) : ''}
                                             </span>
                                             <span class="project-status status-${project.status}">${getStatusText(project.status)}</span>
@@ -3808,6 +4389,9 @@
             });
             
             debugLog('Показани ' + profilesToDisplay.length + ' от ' + clientProfiles.length + ' клиента');
+            
+            // 🔍 ЕТАП 10: Връщаме броя за филтрите
+            return profilesToDisplay.length;
         }
 
         function getStatusText(status) {
@@ -4262,6 +4846,12 @@
         window.openTeamModal = openTeamModal;
         window.addTeamMember = addTeamMember;
         window.removeTeamMember = removeTeamMember;
+        
+        // 🔍 ЕТАП 10: Функции за филтриране
+        window.toggleAdvancedFilters = toggleAdvancedFilters;
+        window.clearAdvancedFilters = clearAdvancedFilters;
+        window.applyAdvancedFilters = applyAdvancedFilters;
+        window.removeFilter = removeFilter;
         
         console.log('🛡️ АВТОНОМНА СИСТЕМА: Готова за работа!');
     </script>
