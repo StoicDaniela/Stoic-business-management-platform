@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Клиентски Профили - ТЕРМИНАТОР ИЗДАНИЕ</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- 🤖 ТЕРМИНАТОР ЗАЩИТА - СТАРТИРА ВЕДНАГА! -->
+    <script>
+        console.log('🤖 ТЕРМИНАТОР ЗАЩИТА СТАРТИРА...');
+        
+        // ТЕРМИНАТОР КОНФИГУРАЦИЯ
+        const TERMINATOR_CONFIG = {
+            PROTECTION_INTERVAL: 50,  // Проверява всеки 50ms
+            BACKUP_KEY: 'clientProfiles_TERMINATOR_BACKUP',
+            SESSION_KEY: 'clientProfiles_SESSION_BACKUP',
+            TARGET_KEY: 'clientProfiles',
+            CONSOLE_PREFIX: '🤖 ТЕРМИНАТОР:'
+        };
+        
+        // ТЕРМИНАТОР ДАННИ
+        let TERMINATOR_STATE = {
+            isActive: false,
+            protectedData: null,
+            attacksBlocked: 0,
+            autoBackupBlocked: false
+        };
+        
+        // ⚡ НЕЗАБАВНА ЗАЩИТА - СТАРТИРА ПРЕДИ ВСИЧКО ДРУГО
+        (function IMMEDIATE_TERMINATOR_PROTECTION() {
+            console.log(TERMINATOR_CONFIG.CONSOLE_PREFIX + ' 🚨 НЕЗАБАВНА ЗАЩИТА АКТИВИРАНА!');
+            
+            // Запазваме съществуващите данни ВЕДНАГА
+            const existingData = localStorage.getItem(TERMINATOR_CONFIG.TARGET_KEY);
+            if (existingData) {
+                try {
+                    const parsed = JSON.parse(existingData);
+                    if (Array.isArray(parsed) && parsed.length > 0) {
+                        TERMINATOR_STATE.protectedData = parsed;
+                        localStorage.setItem(TERMINATOR_CONFIG.BACKUP_KEY, existingData);
+                        sessionStorage.setItem(TERMINATOR_CONFIG.SESSION_KEY, existingData);
+                        console.log(TERMINATOR_CONFIG.CONSOLE_PREFIX + ' 💾 Данни защитени! Проекти: ' + parsed.length);
+                    }
+                } catch(e) {
+                    console.log(TERMINATOR_CONFIG.CONSOLE_PREFIX + ' ⚠️ Грешка при парсиране на данни:', e);
+                }
+            }
+            
+            // БЛОКИРАМЕ AUTO-BACKUP СИСТЕМИ
+            window.DISABLE_AUTO_BACKUP = true;
+            window.STOIC_AUTO_BACKUP_DISABLED = true;
+            console.log(TERMINATOR_CONFIG.CONSOLE_PREFIX + ' 🛑 AUTO-BACKUP СИСТЕМИ БЛОКИРАНИ!');
+            
+        })();
+        
+        // 💀 ТЕРМИНАТОР ФУНКЦИИ
+        function TERMINATE_ATTACK() {
+            const currentData = localStorage.getItem(TERMINATOR_CONFIG.TARGET_KEY);
+            
+            if (!currentData || currentData === '[]' || currentData === 'null') {
+                // АТАКА ЗАСЕЧЕНА!
+                TERMINATOR_STATE.attacksBlocked++;
+                console.log(TERMINATOR_CONFIG.CONSOLE_PREFIX + ' 🚨 АТАКА ЗАСЕЧЕНА! Номер: ' + TERMINATOR_STATE.attacksBlocked);
+                
+                // КОНТРААТАКА
+                if (TERMINATOR_STATE.protectedData) {
+                    localStorage.setItem(TERMINATOR_CONFIG.TARGET_KEY, JSON.stringify(TERMINATOR_STATE.protectedData));
+                    console.log(TERMINATOR_CONFIG.CONSOLE_PREFIX + ' ⚔️ КОНТРААТАКА! Данни възстановени!');
+                } else {
+                    // Опитваме се да възстановим от backup
+                    const backup = localStorage.getItem(TERMINATOR_CONFIG.BACKUP_KEY) || sessionStorage.getItem(TERMINATOR_CONFIG.SESSION_KEY);
+                    if (backup) {
+                        localStorage.setItem(TERMINATOR_CONFIG.TARGET_KEY, backup);
+                        TERMINATOR_STATE.protectedData = JSON.parse(backup);
+                        console.log(TERMINATOR_CONFIG.CONSOLE_PREFIX + ' 🔄 Възстановено от backup!');
+                    }
+                }
+                return true;
+            }
+            
+            // Проверяваме дали данните са намалели
+            try {
+                const current = JSON.parse(currentData);
+                if (TERMINATOR_STATE.protectedData && Array.isArray(current) && Array.isArray(TERMINATOR_STATE.protectedData)) {
+                    if (current.length < TERMINATOR_STATE.protectedData.length) {
+                        TERMINATOR_STATE.attacksBlocked++;
+                        console.log(TERMINATOR_CONFIG.CONSOLE_PREFIX + ' 🚨 ДАННИ НАМАЛЕНИ! От ' + TERMINATOR_STATE.protectedData.length + ' на ' + current.length);
+                        localStorage.setItem(TERMINATOR_CONFIG.TARGET_KEY, JSON.stringify(TERMINATOR_STATE.protectedData));
+                        console.log(TERMINATOR_CONFIG.CONSOLE_PREFIX + ' ⚔️ КОНТРААТАКА! Данни възстановени!');
+                        return true;
+                    }
+                }
+            } catch(e) {
+                console.log(TERMINATOR_CONFIG.CONSOLE_PREFIX + ' ⚠️ Грешка при проверка:', e);
+            }
+            
+            return false;
+        }
+        
+        // 🎯 ЛОКАЛИЗИРАНЕ И СПИРАНЕ НА AUTO-BACKUP
+        function DESTROY_AUTO_BACKUP() {
+            // Търсим във window обекта
+            for (let prop in window) {
+                if (prop.toLowerCase().includes('backup') || prop.toLowerCase().includes('auto')) {
+                    try {
+                        if (typeof window[prop] === 'function') {
+                            window[prop] = function() {
+                                console.log(TERMINATOR_CONFIG.CONSOLE_PREFIX + ' 🛑 БЛОКИРАН AUTO-BACKUP: ' + prop);
+                                return false;
+                            };
+                        }
+                    } catch(e) {
+                        // Игнорираме грешки
+                    }
+                }
+            }
+            
+            // Пренаписваме известни проблемни функции
+            if (window.initializeApp) {
+                const originalInit = window.initializeApp;
+                window.initializeApp = function() {
+                    console.log(TERMINATOR_CONFIG.CONSOLE_PREFIX + ' 🛡️ ПРЕСРЕЩАНЕ НА initializeApp');
+                    // НЕ го викаме или го викаме с предпазни мерки
+                    return false;
+                };
+            }
+        }
+        
+        // 👁️ ТЕРМИНАТОР НАБЛЮДАТЕЛ
+        function START_TERMINATOR_SURVEILLANCE() {
+            console.log(TERMINATOR_CONFIG.CONSOLE_PREFIX + ' 👁️ НАБЛЮДЕНИЕТО ЗАПОЧВА...');
+            
+            // Основна защита на интервал
+            setInterval(function() {
+                if (TERMINATE_ATTACK()) {
+                    console.log(TERMINATOR_CONFIG.CONSOLE_PREFIX + ' 🔥 Общо блокирани атаки: ' + TERMINATOR_STATE.attacksBlocked);
+                }
+            }, TERMINATOR_CONFIG.PROTECTION_INTERVAL);
+            
+            // DOM наблюдател
+            if (window.MutationObserver) {
+                const observer = new MutationObserver(function(mutations) {
+                    // Проверяваме при всяка DOM промяна
+                    TERMINATE_ATTACK();
+                });
+                
+                observer.observe(document.documentElement, {
+                    childList: true,
+                    subtree: true,
+                    attributes: true
+                });
+                
+                console.log(TERMINATOR_CONFIG.CONSOLE_PREFIX + ' 🕵️ DOM наблюдател активиран!');
+            }
+            
+            TERMINATOR_STATE.isActive = true;
+        }
+        
+        // 🚀 СТАРТИРАНЕ НА ЦЯЛАТА СИСТЕМА
+        function INITIALIZE_TERMINATOR() {
+            console.log(TERMINATOR_CONFIG.CONSOLE_PREFIX + ' 🚀 ПЪЛНА ИНИЦИАЛИЗАЦИЯ...');
+            
+            DESTROY_AUTO_BACKUP();
+            START_TERMINATOR_SURVEILLANCE();
+            
+            console.log(TERMINATOR_CONFIG.CONSOLE_PREFIX + ' ✅ ТЕРМИНАТОР АКТИВЕН И ГОТОВ!');
+            console.log(TERMINATOR_CONFIG.CONSOLE_PREFIX + ' 📊 Статус:', TERMINATOR_STATE);
+        }
+        
+        // СТАРТИРАНЕ В РАЗЛИЧНИ МОМЕНТИ
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', INITIALIZE_TERMINATOR);
+        } else {
+            INITIALIZE_TERMINATOR();
+        }
+        
+        // Резервен стартиране
+        setTimeout(INITIALIZE_TERMINATOR, 100);
+        setTimeout(INITIALIZE_TERMINATOR, 500);
+        
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <img src="logo.png" alt="Stoic Business Logo" class="logo-img">
+                <h1>Stoic Business Management</h1>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">Начало</a>
+                <a href="admin-dashboard.html">Административен панел</a>
+                <a href="client-profiles.html">Клиентски профили</a>
+                <a href="project-management.html">Управление на проекти</a>
+                <a href="data-export.html">Експорт на данни</a>
+                <a href="reports.html">Отчети</a>
+            </nav>
+        </header>
+
+        <main class="main-content">
+            <section class="content-header">
+                <h2>Клиентски Профили - ТЕРМИНАТОР ЗАЩИТА 🤖</h2>
+                <p>Управление на клиентската база с максимална защита на данните</p>
+            </section>
+
+            <div class="action-buttons">
+                <button id="addClientBtn" class="btn btn-primary">
+                    <i class="icon">👤</i>
+                    Добави нов клиент
+                </button>
+                <button id="addProjectBtn" class="btn btn-secondary">
+                    <i class="icon">📊</i>
+                    Добави нов проект
+                </button>
+                <button id="exportBtn" class="btn btn-success">
+                    <i class="icon">📤</i>
+                    Експорт
+                </button>
+            </div>
+
+            <div class="clients-grid" id="clientsGrid">
+                <!-- Клиентите ще бъдат зареждани динамично тук -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal за добавяне на клиент -->
+    <div id="clientModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Добави нов клиент</h3>
+            <form id="clientForm">
+                <div class="form-group">
+                    <label for="clientName">Име на клиента:</label>
+                    <input type="text" id="clientName" name="clientName" required>
+                </div>
+                <div class="form-group">
+                    <label for="clientEmail">Email:</label>
+                    <input type="email" id="clientEmail" name="clientEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="clientPhone">Телефон:</label>
+                    <input type="tel" id="clientPhone" name="clientPhone">
+                </div>
+                <div class="form-group">
+                    <label for="clientCompany">Компания:</label>
+                    <input type="text" id="clientCompany" name="clientCompany">
+                </div>
+                <div class="form-buttons">
+                    <button type="submit" class="btn btn-primary">Запази</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('clientModal')">Отказ</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal за добавяне на проект -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Добави нов проект</h3>
+            <form id="projectForm">
+                <div class="form-group">
+                    <label for="projectName">Име на проекта:</label>
+                    <input type="text" id="projectName" name="projectName" required>
+                </div>
+                <div class="form-group">
+                    <label for="projectClient">Клиент:</label>
+                    <select id="projectClient" name="projectClient" required>
+                        <option value="">Избери клиент</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="projectStatus">Статус:</label>
+                    <select id="projectStatus" name="projectStatus" required>
+                        <option value="planning">Планиране</option>
+                        <option value="active">Активен</option>
+                        <option value="completed">Завършен</option>
+                        <option value="on-hold">Спрян</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="projectBudget">Бюджет (лв.):</label>
+                    <input type="number" id="projectBudget" name="projectBudget" min="0" step="0.01">
+                </div>
+                <div class="form-group">
+                    <label for="projectStartDate">Начална дата:</label>
+                    <input type="date" id="projectStartDate" name="projectStartDate">
+                </div>
+                <div class="form-group">
+                    <label for="projectEndDate">Крайна дата:</label>
+                    <input type="date" id="projectEndDate" name="projectEndDate">
+                </div>
+                <div class="form-buttons">
+                    <button type="submit" class="btn btn-primary">Запази</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('projectModal')">Отказ</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        console.log('🤖 ТЕРМИНАТОР: Основен скрипт зареден...');
+        
+        // 🛡️ ЗАЩИТЕНА ВЕРСИЯ НА ДАННИТЕ
+        let clientProfiles = [];
+        
+        // 💾 ФУНКЦИЯ ЗА БЕЗОПАСНО ЗАРЕЖДАНЕ НА ДАННИТЕ
+        function loadClientProfilesSafely() {
+            console.log('🤖 ТЕРМИНАТОР: Зареждане на данни...');
+            
+            try {
+                const stored = localStorage.getItem('clientProfiles');
+                if (stored && stored !== '[]' && stored !== 'null') {
+                    clientProfiles = JSON.parse(stored);
+                    console.log('🤖 ТЕРМИНАТОР: Заредени ' + clientProfiles.length + ' профила');
+                } else {
+                    console.log('🤖 ТЕРМИНАТОР: Няма запазени данни, стартираме с празен масив');
+                    clientProfiles = [];
+                }
+                
+                // Запазваме като защитени данни
+                if (clientProfiles.length > 0) {
+                    TERMINATOR_STATE.protectedData = [...clientProfiles];
+                    localStorage.setItem(TERMINATOR_CONFIG.BACKUP_KEY, JSON.stringify(clientProfiles));
+                    sessionStorage.setItem(TERMINATOR_CONFIG.SESSION_KEY, JSON.stringify(clientProfiles));
+                }
+                
+            } catch(error) {
+                console.error('🤖 ТЕРМИНАТОР: Грешка при зареждане:', error);
+                clientProfiles = [];
+            }
+            
+            displayClients();
+            updateProjectClientOptions();
+        }
+        
+        // 💾 ФУНКЦИЯ ЗА БЕЗОПАСНО ЗАПАЗВАНЕ
+        function saveClientProfilesSafely() {
+            console.log('🤖 ТЕРМИНАТОР: Запазване на данни...');
+            
+            try {
+                const dataToSave = JSON.stringify(clientProfiles);
+                localStorage.setItem('clientProfiles', dataToSave);
+                
+                // Обновяваме защитените данни
+                TERMINATOR_STATE.protectedData = [...clientProfiles];
+                localStorage.setItem(TERMINATOR_CONFIG.BACKUP_KEY, dataToSave);
+                sessionStorage.setItem(TERMINATOR_CONFIG.SESSION_KEY, dataToSave);
+                
+                console.log('🤖 ТЕРМИНАТОР: Данни запазени безопасно! Профили: ' + clientProfiles.length);
+                
+            } catch(error) {
+                console.error('🤖 ТЕРМИНАТОР: Грешка при запазване:', error);
+            }
+        }
+
+        // Показване на клиентите
+        function displayClients() {
+            const clientsGrid = document.getElementById('clientsGrid');
+            clientsGrid.innerHTML = '';
+
+            if (clientProfiles.length === 0) {
+                clientsGrid.innerHTML = '<div class="no-data">Няма добавени клиенти</div>';
+                return;
+            }
+
+            clientProfiles.forEach((profile, index) => {
+                const clientCard = document.createElement('div');
+                clientCard.className = 'client-card';
+                clientCard.innerHTML = `
+                    <div class="client-header">
+                        <h3>${profile.client.name}</h3>
+                        <div class="client-actions">
+                            <button onclick="editClient(${index})" class="btn-small btn-edit">Редактирай</button>
+                            <button onclick="deleteClient(${index})" class="btn-small btn-delete">Изтрий</button>
+                        </div>
+                    </div>
+                    <div class="client-info">
+                        <p><strong>Email:</strong> ${profile.client.email}</p>
+                        <p><strong>Телефон:</strong> ${profile.client.phone || 'Не е посочен'}</p>
+                        <p><strong>Компания:</strong> ${profile.client.company || 'Не е посочена'}</p>
+                    </div>
+                    <div class="projects-section">
+                        <h4>Проекти (${profile.projects.length})</h4>
+                        <div class="projects-list">
+                            ${profile.projects.map(project => `
+                                <div class="project-item">
+                                    <span class="project-name">${project.name}</span>
+                                    <span class="project-status status-${project.status}">${getStatusText(project.status)}</span>
+                                    <span class="project-budget">${project.budget ? project.budget + ' лв.' : 'Не е посочен'}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+                clientsGrid.appendChild(clientCard);
+            });
+        }
+
+        // Получаване на текст за статуса
+        function getStatusText(status) {
+            const statusMap = {
+                'planning': 'Планиране',
+                'active': 'Активен',
+                'completed': 'Завършен',
+                'on-hold': 'Спрян'
+            };
+            return statusMap[status] || status;
+        }
+
+        // Обновяване на опциите за клиенти в проект формата
+        function updateProjectClientOptions() {
+            const select = document.getElementById('projectClient');
+            select.innerHTML = '<option value="">Избери клиент</option>';
+            
+            clientProfiles.forEach((profile, index) => {
+                const option = document.createElement('option');
+                option.value = index;
+                option.textContent = profile.client.name;
+                select.appendChild(option);
+            });
+        }
+
+        // Добавяне на клиент
+        function addClient(clientData) {
+            const newProfile = {
+                client: clientData,
+                projects: []
+            };
+            clientProfiles.push(newProfile);
+            saveClientProfilesSafely();
+            displayClients();
+            updateProjectClientOptions();
+            console.log('🤖 ТЕРМИНАТОР: Клиент добавен:', clientData.name);
+        }
+
+        // Добавяне на проект
+        function addProject(projectData) {
+            const clientIndex = parseInt(projectData.clientIndex);
+            if (clientIndex >= 0 && clientIndex < clientProfiles.length) {
+                delete projectData.clientIndex;
+                clientProfiles[clientIndex].projects.push(projectData);
+                saveClientProfilesSafely();
+                displayClients();
+                console.log('🤖 ТЕРМИНАТОР: Проект добавен:', projectData.name);
+            }
+        }
+
+        // Изтриване на клиент
+        function deleteClient(index) {
+            if (confirm('Сигурни ли сте, че искате да изтриете този клиент и всичките му проекти?')) {
+                const deletedClient = clientProfiles[index];
+                clientProfiles.splice(index, 1);
+                saveClientProfilesSafely();
+                displayClients();
+                updateProjectClientOptions();
+                console.log('🤖 ТЕРМИНАТОР: Клиент изтрит:', deletedClient.client.name);
+            }
+        }
+
+        // Modal функции
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🤖 ТЕРМИНАТОР: DOM зареден, стартираме основните функции...');
+            
+            // Зареждаме данните
+            loadClientProfilesSafely();
+
+            // Event listeners за бутоните
+            document.getElementById('addClientBtn').addEventListener('click', () => openModal('clientModal'));
+            document.getElementById('addProjectBtn').addEventListener('click', () => openModal('projectModal'));
+
+            // Затваряне на modal при клик на X
+            document.querySelectorAll('.close').forEach(closeBtn => {
+                closeBtn.addEventListener('click', function() {
+                    const modal = this.closest('.modal');
+                    modal.style.display = 'none';
+                });
+            });
+
+            // Затваряне на modal при клик извън него
+            window.addEventListener('click', function(event) {
+                if (event.target.classList.contains('modal')) {
+                    event.target.style.display = 'none';
+                }
+            });
+
+            // Формата за клиент
+            document.getElementById('clientForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const formData = new FormData(this);
+                const clientData = {
+                    name: formData.get('clientName'),
+                    email: formData.get('clientEmail'),
+                    phone: formData.get('clientPhone'),
+                    company: formData.get('clientCompany')
+                };
+                addClient(clientData);
+                this.reset();
+                closeModal('clientModal');
+            });
+
+            // Формата за проект
+            document.getElementById('projectForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const formData = new FormData(this);
+                const projectData = {
+                    name: formData.get('projectName'),
+                    clientIndex: formData.get('projectClient'),
+                    status: formData.get('projectStatus'),
+                    budget: formData.get('projectBudget') ? parseFloat(formData.get('projectBudget')) : null,
+                    startDate: formData.get('projectStartDate'),
+                    endDate: formData.get('projectEndDate')
+                };
+                addProject(projectData);
+                this.reset();
+                closeModal('projectModal');
+            });
+
+            // Експорт функционалност
+            document.getElementById('exportBtn').addEventListener('click', function() {
+                const dataStr = JSON.stringify(clientProfiles, null, 2);
+                const dataBlob = new Blob([dataStr], {type: 'application/json'});
+                const url = URL.createObjectURL(dataBlob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = 'client-profiles-export.json';
+                link.click();
+                console.log('🤖 ТЕРМИНАТОР: Данни експортирани');
+            });
+            
+            console.log('🤖 ТЕРМИНАТОР: Всички event listeners са настроени!');
+        });
+        
+        // 🚨 ФИНАЛНА ПРОВЕРКА
+        window.addEventListener('beforeunload', function() {
+            console.log('🤖 ТЕРМИНАТОР: Страницата се затваря, правим финална проверка...');
+            saveClientProfilesSafely();
+        });
+        
+        console.log('🤖 ТЕРМИНАТОР: Скрипт напълно зареден и готов!');
+    </script>
+</body>
+</html>
