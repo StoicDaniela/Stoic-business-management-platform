@@ -1155,6 +1155,264 @@
             font-size: 0.9em;
         }
 
+        /* 👥 ЕТАП 9: УПРАВЛЕНИЕ НА ЕКИПИ */
+        .team-section {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid var(--border-color);
+            transition: border-color 0.3s ease;
+        }
+
+        .team-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .team-header h4 {
+            color: var(--accent-primary);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s ease;
+        }
+
+        .btn-manage-team {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-manage-team:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .team-members-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .team-member-badge {
+            background: var(--project-item-bg);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--border-color);
+        }
+
+        .team-member-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 3px 10px var(--card-shadow);
+        }
+
+        .role-developer { border-color: #3498db; color: #3498db; }
+        .role-designer { border-color: #9b59b6; color: #9b59b6; }
+        .role-manager { border-color: #e74c3c; color: #e74c3c; }
+        .role-qa { border-color: #f39c12; color: #f39c12; }
+        .role-marketing { border-color: #1abc9c; color: #1abc9c; }
+        .role-support { border-color: #34495e; color: #34495e; }
+        .role-other { border-color: #95a5a6; color: #95a5a6; }
+
+        .member-name {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .member-role {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        .no-team-members {
+            color: var(--text-secondary);
+            font-style: italic;
+            font-size: 0.9em;
+        }
+
+        /* Modal за управление на екип */
+        .team-modal .modal-content {
+            max-width: 700px;
+        }
+
+        .team-members-table {
+            width: 100%;
+            margin-bottom: 20px;
+            background: var(--surface-bg);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .team-member-row {
+            display: grid;
+            grid-template-columns: 2fr 1.5fr 1.5fr auto;
+            gap: 10px;
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--border-color);
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .team-member-row:hover {
+            background: var(--project-item-bg);
+        }
+
+        .team-member-row:last-child {
+            border-bottom: none;
+        }
+
+        .member-info {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .member-info strong {
+            color: var(--text-primary);
+            font-size: 1em;
+        }
+
+        .member-info small {
+            color: var(--text-secondary);
+            font-size: 0.85em;
+        }
+
+        .member-role-badge {
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .btn-remove-member {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-remove-member:hover {
+            background: #c0392b;
+            transform: scale(1.05);
+        }
+
+        .add-member-form {
+            background: var(--project-item-bg);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .add-member-form h4 {
+            color: var(--accent-primary);
+            margin: 0 0 15px 0;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        /* Статистики за екипи */
+        .team-statistics-panel {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            color: white;
+        }
+
+        .team-stats-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .team-stats-header h3 {
+            margin: 0;
+            font-size: 1.8em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .team-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .team-stat-section {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .team-stat-section h4 {
+            margin: 0 0 15px 0;
+            font-size: 1.2em;
+            text-align: center;
+        }
+
+        .top-member-item {
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .top-member-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .member-rank {
+            font-weight: bold;
+            font-size: 1.3em;
+            color: var(--accent-primary);
+            margin-right: 10px;
+        }
+
+        .member-details {
+            flex: 1;
+        }
+
+        .member-count {
+            background: var(--accent-primary);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
         /* 📊 ЕТАП 5: Визуализации и графики */
         .visualization-panel {
             background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
@@ -1525,6 +1783,38 @@
             </div>
         </div>
 
+        <!-- 👥 ЕТАП 9: Статистики за екипи -->
+        <div class="team-statistics-panel" id="teamStatisticsPanel" style="display: none;">
+            <div class="team-stats-header">
+                <h3>👥 Статистики на Екипите</h3>
+            </div>
+            <div class="team-stats-grid">
+                <!-- Топ членове по натовареност -->
+                <div class="team-stat-section">
+                    <h4>🏆 Топ 5 по Натовареност</h4>
+                    <div id="topMembersByWorkload">
+                        <!-- Динамично съдържание -->
+                    </div>
+                </div>
+                
+                <!-- Топ членове по успешни проекти -->
+                <div class="team-stat-section">
+                    <h4>⭐ Топ 5 по Успешни Проекти</h4>
+                    <div id="topMembersBySuccess">
+                        <!-- Динамично съдържание -->
+                    </div>
+                </div>
+                
+                <!-- Разпределение по роли -->
+                <div class="team-stat-section">
+                    <h4>📊 Разпределение по Роли</h4>
+                    <div id="roleDistribution">
+                        <!-- Динамично съдържание -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- 📊 ЕТАП 5: Визуализационен панел -->
         <div class="visualization-panel" id="visualizationPanel" style="display: none;">
             <div class="visualization-header">
@@ -1735,6 +2025,58 @@
             <div class="form-buttons">
                 <button type="submit" form="projectForm" class="btn btn-primary">Запази</button>
                 <button type="button" class="btn btn-secondary" onclick="closeModal('projectModal')">Отказ</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 👥 ЕТАП 9: Modal за управление на екип -->
+    <div id="teamModal" class="modal team-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>👥 Управление на Екип</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="teamClientIndex" value="-1">
+                <input type="hidden" id="teamProjectIndex" value="-1">
+                
+                <!-- Списък с членове -->
+                <div class="team-members-table" id="teamMembersTable">
+                    <!-- Динамично съдържание -->
+                </div>
+                
+                <!-- Форма за добавяне на член -->
+                <div class="add-member-form">
+                    <h4>➕ Добави член на екипа</h4>
+                    <form id="teamMemberForm" onsubmit="addTeamMember(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="memberName">Име:</label>
+                                <input type="text" id="memberName" name="memberName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="memberPhone">Телефон:</label>
+                                <input type="tel" id="memberPhone" name="memberPhone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="memberRole">Роля:</label>
+                                <select id="memberRole" name="memberRole" required>
+                                    <option value="developer">Developer</option>
+                                    <option value="designer">Designer</option>
+                                    <option value="manager">Project Manager</option>
+                                    <option value="qa">QA</option>
+                                    <option value="marketing">Marketing</option>
+                                    <option value="support">Support</option>
+                                    <option value="other">Друга</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">➕ Добави член</button>
+                    </form>
+                </div>
+            </div>
+            <div class="form-buttons">
+                <button type="button" class="btn btn-secondary" onclick="closeModal('teamModal')">Затвори</button>
             </div>
         </div>
     </div>
@@ -2178,6 +2520,255 @@
             document.getElementById('dataStatsBudget').textContent = formatCurrency(financialStats.total);
         }
         
+        // 👥 ЕТАП 9: УПРАВЛЕНИЕ НА ЕКИПИ
+        
+        // Отваряне на modal за управление на екип
+        function openTeamModal(clientIndex, projectIndex) {
+            debugLog('Отваряне на екипен modal:', clientIndex, projectIndex);
+            
+            document.getElementById('teamClientIndex').value = clientIndex;
+            document.getElementById('teamProjectIndex').value = projectIndex;
+            
+            displayTeamMembers(clientIndex, projectIndex);
+            openModal('teamModal');
+        }
+        
+        // Показване на членове на екипа
+        function displayTeamMembers(clientIndex, projectIndex) {
+            const project = clientProfiles[clientIndex].projects[projectIndex];
+            const team = project.team || [];
+            
+            const table = document.getElementById('teamMembersTable');
+            
+            if (team.length === 0) {
+                table.innerHTML = '<div style="padding: 20px; text-align: center; color: #999;">Няма членове в екипа</div>';
+                return;
+            }
+            
+            table.innerHTML = team.map((member, index) => {
+                const roleNames = {
+                    developer: 'Developer',
+                    designer: 'Designer',
+                    manager: 'Project Manager',
+                    qa: 'QA',
+                    marketing: 'Marketing',
+                    support: 'Support',
+                    other: 'Друга'
+                };
+                
+                const roleClass = `role-${member.role}`;
+                
+                return `
+                    <div class="team-member-row">
+                        <div class="member-info">
+                            <strong>${member.name}</strong>
+                            <small>📞 ${member.phone}</small>
+                        </div>
+                        <div class="member-role-badge ${roleClass}">
+                            ${roleNames[member.role] || member.role}
+                        </div>
+                        <div style="font-size: 0.85em; color: #999;">
+                            Добавен: ${new Date(member.added).toLocaleDateString('bg-BG')}
+                        </div>
+                        <button class="btn-remove-member" onclick="removeTeamMember(${clientIndex}, ${projectIndex}, ${index})">
+                            🗑️ Премахни
+                        </button>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        // Добавяне на член на екипа
+        function addTeamMember(event) {
+            event.preventDefault();
+            
+            const clientIndex = parseInt(document.getElementById('teamClientIndex').value);
+            const projectIndex = parseInt(document.getElementById('teamProjectIndex').value);
+            
+            if (clientIndex < 0 || projectIndex < 0) return;
+            
+            const name = document.getElementById('memberName').value.trim();
+            const phone = document.getElementById('memberPhone').value.trim();
+            const role = document.getElementById('memberRole').value;
+            
+            const member = {
+                id: Date.now(),
+                name,
+                phone,
+                role,
+                added: new Date().toISOString()
+            };
+            
+            // Инициализираме team масива, ако не съществува
+            if (!clientProfiles[clientIndex].projects[projectIndex].team) {
+                clientProfiles[clientIndex].projects[projectIndex].team = [];
+            }
+            
+            clientProfiles[clientIndex].projects[projectIndex].team.push(member);
+            
+            if (saveData()) {
+                displayTeamMembers(clientIndex, projectIndex);
+                displayClients();
+                updateTeamStatistics();
+                document.getElementById('teamMemberForm').reset();
+                updateStatusBanner(`Член "${name}" добавен към екипа!`);
+                debugLog('Добавен член на екип:', member);
+            }
+        }
+        
+        // Премахване на член от екипа
+        function removeTeamMember(clientIndex, projectIndex, memberIndex) {
+            const member = clientProfiles[clientIndex].projects[projectIndex].team[memberIndex];
+            
+            if (confirm(`Сигурни ли сте, че искате да премахнете "${member.name}" от екипа?`)) {
+                clientProfiles[clientIndex].projects[projectIndex].team.splice(memberIndex, 1);
+                
+                if (saveData()) {
+                    displayTeamMembers(clientIndex, projectIndex);
+                    displayClients();
+                    updateTeamStatistics();
+                    updateStatusBanner(`Член "${member.name}" премахнат!`);
+                    debugLog('Премахнат член от екип:', member);
+                }
+            }
+        }
+        
+        // Изчисляване на статистики за екипите
+        function calculateTeamStatistics() {
+            const allMembers = {}; // { name: { name, phone, roles: Set(), projects: [], completedProjects: [] } }
+            const roleCount = {};
+            
+            clientProfiles.forEach((profile, clientIndex) => {
+                profile.projects.forEach((project, projectIndex) => {
+                    const team = project.team || [];
+                    
+                    team.forEach(member => {
+                        // Уникален ключ по име и телефон
+                        const key = `${member.name}-${member.phone}`;
+                        
+                        if (!allMembers[key]) {
+                            allMembers[key] = {
+                                name: member.name,
+                                phone: member.phone,
+                                roles: new Set(),
+                                projects: [],
+                                completedProjects: []
+                            };
+                        }
+                        
+                        allMembers[key].roles.add(member.role);
+                        allMembers[key].projects.push({
+                            clientIndex,
+                            projectIndex,
+                            projectName: project.name,
+                            clientName: profile.client.name,
+                            status: project.status
+                        });
+                        
+                        if (project.status === 'completed') {
+                            allMembers[key].completedProjects.push(project.name);
+                        }
+                        
+                        // Брой по роли
+                        roleCount[member.role] = (roleCount[member.role] || 0) + 1;
+                    });
+                });
+            });
+            
+            return {
+                members: Object.values(allMembers),
+                roleCount
+            };
+        }
+        
+        // Обновяване на статистическия панел за екипи
+        function updateTeamStatistics() {
+            const teamStats = calculateTeamStatistics();
+            const panel = document.getElementById('teamStatisticsPanel');
+            
+            if (teamStats.members.length === 0) {
+                panel.style.display = 'none';
+                return;
+            }
+            
+            panel.style.display = 'block';
+            
+            // Топ 5 по натовареност (брой проекти)
+            const topByWorkload = teamStats.members
+                .sort((a, b) => b.projects.length - a.projects.length)
+                .slice(0, 5);
+            
+            document.getElementById('topMembersByWorkload').innerHTML = topByWorkload.length > 0 ?
+                topByWorkload.map((member, index) => `
+                    <div class="top-member-item">
+                        <span class="member-rank">${index + 1}</span>
+                        <div class="member-details">
+                            <div style="font-weight: bold;">${member.name}</div>
+                            <div style="font-size: 0.85em; color: #666;">📞 ${member.phone}</div>
+                        </div>
+                        <div class="member-count">${member.projects.length} проекта</div>
+                    </div>
+                `).join('') :
+                '<p style="text-align: center; color: #666;">Няма данни</p>';
+            
+            // Топ 5 по успешни проекти (завършени)
+            const topBySuccess = teamStats.members
+                .sort((a, b) => b.completedProjects.length - a.completedProjects.length)
+                .slice(0, 5);
+            
+            document.getElementById('topMembersBySuccess').innerHTML = topBySuccess.length > 0 ?
+                topBySuccess.map((member, index) => `
+                    <div class="top-member-item">
+                        <span class="member-rank">${index + 1}</span>
+                        <div class="member-details">
+                            <div style="font-weight: bold;">${member.name}</div>
+                            <div style="font-size: 0.85em; color: #666;">📞 ${member.phone}</div>
+                        </div>
+                        <div class="member-count">${member.completedProjects.length} завършени</div>
+                    </div>
+                `).join('') :
+                '<p style="text-align: center; color: #666;">Няма данни</p>';
+            
+            // Разпределение по роли
+            const roleNames = {
+                developer: 'Developer',
+                designer: 'Designer',
+                manager: 'Project Manager',
+                qa: 'QA',
+                marketing: 'Marketing',
+                support: 'Support',
+                other: 'Друга'
+            };
+            
+            const roleColors = {
+                developer: '#3498db',
+                designer: '#9b59b6',
+                manager: '#e74c3c',
+                qa: '#f39c12',
+                marketing: '#1abc9c',
+                support: '#34495e',
+                other: '#95a5a6'
+            };
+            
+            const roleItems = Object.entries(teamStats.roleCount)
+                .sort((a, b) => b[1] - a[1])
+                .map(([role, count]) => `
+                    <div class="top-member-item">
+                        <div style="width: 30px; height: 30px; border-radius: 50%; background: ${roleColors[role] || '#999'};"></div>
+                        <div class="member-details">
+                            <div style="font-weight: bold;">${roleNames[role] || role}</div>
+                        </div>
+                        <div class="member-count">${count}</div>
+                    </div>
+                `);
+            
+            document.getElementById('roleDistribution').innerHTML = roleItems.length > 0 ?
+                roleItems.join('') :
+                '<p style="text-align: center; color: #666;">Няма данни</p>';
+            
+            debugLog('Екипни статистики:', teamStats);
+        }
+        
         // 🐛 ДЕБЪГ ФУНКЦИИ
         function debugLog(message, data = null) {
             if (CONFIG.DEBUG) {
@@ -2467,9 +3058,9 @@
         
         function formatCurrency(amount) {
             if (amount >= 1000000) {
-                return (amount / 1000000).toFixed(1) + 'M лв';
+                return (amount / 1000000).toFixed(1) + ' млн. лева';
             } else if (amount >= 1000) {
-                return (amount / 1000).toFixed(0) + 'K лв';
+                return (amount / 1000).toFixed(0) + ' хил. лева';
             } else {
                 return amount.toFixed(0) + ' лв';
             }
@@ -3110,6 +3701,9 @@
             
             // 🔔 ЕТАП 6: Обновяваме комуникационния панел
             updateCommunicationPanel();
+            
+            // 👥 ЕТАП 9: Обновяваме екипните статистики
+            updateTeamStatistics();
 
             if (clientProfiles.length === 0) {
                 clientsGrid.innerHTML = '<div class="no-data">Няма добавени клиенти<br>Започнете с добавяне на нов клиент!</div>';
@@ -3156,20 +3750,57 @@
                         <div class="projects-list">
                             ${profile.projects.length === 0 ? 
                                 '<p style="color: #666; font-style: italic;">Няма проекти за този клиент</p>' :
-                                profile.projects.map((project, pIndex) => `
-                                <div class="project-item">
-                                    <span class="project-name">
-                                        ${project.name}
-                                        ${project.endDate ? getDeadlineBadgeHTML(project.endDate) : ''}
-                                    </span>
-                                    <span class="project-status status-${project.status}">${getStatusText(project.status)}</span>
-                                    <span class="project-budget">${project.budget ? project.budget + ' лв.' : 'Не е посочен'}</span>
-                                    <div class="project-actions">
-                                        <button onclick="editProject(${index}, ${pIndex})" class="btn-small btn-edit">✏️</button>
-                                        <button onclick="deleteProject(${index}, ${pIndex})" class="btn-small btn-delete">🗑️</button>
-                                    </div>
-                                </div>
-                            `).join('')}
+                                profile.projects.map((project, pIndex) => {
+                                    const team = project.team || [];
+                                    const teamHTML = team.length > 0 ? `
+                                        <div class="team-section">
+                                            <div class="team-header">
+                                                <h4>👥 Екип (${team.length})</h4>
+                                                <button class="btn-manage-team" onclick="openTeamModal(${index}, ${pIndex})">
+                                                    ⚙️ Управление
+                                                </button>
+                                            </div>
+                                            <div class="team-members-list">
+                                                ${team.slice(0, 5).map(member => {
+                                                    const roleClass = `role-${member.role}`;
+                                                    return `
+                                                        <div class="team-member-badge ${roleClass}">
+                                                            <span class="member-name">${member.name}</span>
+                                                            <span class="member-role">(${member.role})</span>
+                                                        </div>
+                                                    `;
+                                                }).join('')}
+                                                ${team.length > 5 ? `<div class="team-member-badge">+${team.length - 5} още...</div>` : ''}
+                                            </div>
+                                        </div>
+                                    ` : `
+                                        <div class="team-section">
+                                            <div class="team-header">
+                                                <h4>👥 Екип</h4>
+                                                <button class="btn-manage-team" onclick="openTeamModal(${index}, ${pIndex})">
+                                                    ➕ Добави екип
+                                                </button>
+                                            </div>
+                                            <div class="no-team-members">Няма добавени членове</div>
+                                        </div>
+                                    `;
+                                    
+                                    return `
+                                        <div class="project-item">
+                                            <span class="project-name">
+                                                ${project.name}
+                                                ${project.endDate ? getDeadlineBadgeHTML(project.endDate) : ''}
+                                            </span>
+                                            <span class="project-status status-${project.status}">${getStatusText(project.status)}</span>
+                                            <span class="project-budget">${project.budget ? project.budget + ' лв.' : 'Не е посочен'}</span>
+                                            <div class="project-actions">
+                                                <button onclick="editProject(${index}, ${pIndex})" class="btn-small btn-edit">✏️</button>
+                                                <button onclick="deleteProject(${index}, ${pIndex})" class="btn-small btn-delete">🗑️</button>
+                                            </div>
+                                        </div>
+                                        ${teamHTML}
+                                    `;
+                                }).join('')}
                         </div>
                     </div>
                 `;
@@ -3627,6 +4258,10 @@
         window.exportClientsCSV = exportClientsCSV;
         window.exportProjectsCSV = exportProjectsCSV;
         window.handleImportFile = handleImportFile;
+        // 👥 ЕТАП 9: Функции за екипи
+        window.openTeamModal = openTeamModal;
+        window.addTeamMember = addTeamMember;
+        window.removeTeamMember = removeTeamMember;
         
         console.log('🛡️ АВТОНОМНА СИСТЕМА: Готова за работа!');
     </script>
