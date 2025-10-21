@@ -1,26 +1,3 @@
-<script>
-// ЗАЩИТА НА ДАННИТЕ - предпазва от презаписване
-window.addEventListener('DOMContentLoaded', function() {
-    // Запази съществуващите данни
-    const existingData = localStorage.getItem('clientProfiles');
-    
-    // Създай backup
-    if (existingData && existingData !== 'null') {
-        localStorage.setItem('clientProfiles_backup', existingData);
-    }
-    
-    // Провери за презаписване всяка секунда
-    setInterval(function() {
-        const current = localStorage.getItem('clientProfiles');
-        const backup = localStorage.getItem('clientProfiles_backup');
-        
-        // Ако данните са презаписани с тестови, върни backup-а
-        if (backup && backup !== current && backup.length > current.length) {
-            localStorage.setItem('clientProfiles', backup);
-        }
-    }, 1000);
-});
-</script>
 
 <!DOCTYPE html>
 <html lang="bg">
