@@ -116,6 +116,36 @@
             transition: all 0.3s ease;
             z-index: 10;
         }
+        
+        /* 📦 ЕТАП 8: Бутон за данни */
+        .data-toggle {
+            position: absolute;
+            top: 20px;
+            right: 160px;
+            background: linear-gradient(45deg, #f7b733, #fc4a1a);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(247, 183, 51, 0.3);
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        
+        .data-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(247, 183, 51, 0.5);
+        }
+        
+        .data-toggle:active {
+            transform: translateY(0);
+        }
 
         .theme-toggle:hover {
             transform: translateY(-2px);
@@ -975,6 +1005,155 @@
             line-height: 1.6;
             margin: 0;
         }
+        
+        /* 📦 ЕТАП 8: Data Export/Import Modal */
+        .data-modal-grid {
+            display: grid;
+            gap: 15px;
+        }
+        
+        .data-section {
+            background: var(--project-item-bg);
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .data-section:hover {
+            background: var(--surface-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px var(--card-shadow);
+        }
+        
+        .data-section h4 {
+            color: var(--accent-primary);
+            margin: 0 0 15px 0;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .data-section p {
+            color: var(--text-secondary);
+            font-size: 0.9em;
+            margin: 0 0 15px 0;
+            line-height: 1.5;
+        }
+        
+        .data-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-data {
+            flex: 1;
+            min-width: 120px;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+        
+        .btn-data:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-export-json {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+        
+        .btn-export-csv {
+            background: linear-gradient(45deg, #11998e, #38ef7d);
+            color: white;
+        }
+        
+        .btn-import {
+            background: linear-gradient(45deg, #f7b733, #fc4a1a);
+            color: white;
+        }
+        
+        .data-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px solid var(--border-color);
+        }
+        
+        .data-stat-item {
+            text-align: center;
+        }
+        
+        .data-stat-value {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: var(--accent-primary);
+            margin-bottom: 5px;
+        }
+        
+        .data-stat-label {
+            font-size: 0.85em;
+            color: var(--text-secondary);
+        }
+        
+        .import-zone {
+            border: 3px dashed var(--border-color);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            background: var(--input-bg);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .import-zone:hover {
+            border-color: var(--accent-primary);
+            background: var(--surface-hover);
+        }
+        
+        .import-zone.drag-over {
+            border-color: var(--success-color);
+            background: rgba(76, 175, 80, 0.1);
+        }
+        
+        .import-zone input[type="file"] {
+            display: none;
+        }
+        
+        .import-options {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        .import-option {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .import-option input[type="radio"] {
+            cursor: pointer;
+        }
+        
+        .import-option label {
+            cursor: pointer;
+            color: var(--text-primary);
+            font-size: 0.9em;
+        }
 
         /* 📊 ЕТАП 5: Визуализации и графики */
         .visualization-panel {
@@ -1105,6 +1284,14 @@
                 font-size: 14px;
             }
             
+            /* 📦 ЕТАП 8: Responsive за бутона за данни */
+            .data-toggle {
+                top: 50px;
+                right: 10px;
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+            
             .action-buttons {
                 flex-direction: column;
             }
@@ -1167,6 +1354,11 @@
 <body>
     <div class="container">
         <div class="header">
+            <!-- 📦 ЕТАП 8: Бутон за данни -->
+            <button class="data-toggle" id="dataToggle" aria-label="Управление на данни">
+                <span>📦</span>
+                <span>Данни</span>
+            </button>
             <!-- 🎨 ЕТАП 7: Превключвател на теми -->
             <button class="theme-toggle" id="themeToggle" aria-label="Превключи тема">
                 <span id="themeIcon">🌙</span>
@@ -1186,9 +1378,6 @@
             </button>
             <button id="addProjectBtn" class="btn btn-secondary">
                 📊 Добави нов проект
-            </button>
-            <button id="exportBtn" class="btn btn-success">
-                📤 Експорт данни
             </button>
             <button id="clearBtn" class="btn" style="background: #ff6b6b; color: white;">
                 🗑️ Изчисти всичко
@@ -1417,6 +1606,88 @@
         </div>
     </div>
 
+    <!-- 📦 ЕТАП 8: Modal за управление на данни -->
+    <div id="dataModal" class="modal">
+        <div class="modal-content" style="max-width: 700px;">
+            <div class="modal-header">
+                <h3>📦 Експорт и Архивиране на Данни</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="data-modal-grid">
+                    <!-- Преглед на данните -->
+                    <div class="data-section">
+                        <h4>📊 Преглед на данните</h4>
+                        <div class="data-stats">
+                            <div class="data-stat-item">
+                                <div class="data-stat-value" id="dataStatsClients">0</div>
+                                <div class="data-stat-label">Клиенти</div>
+                            </div>
+                            <div class="data-stat-item">
+                                <div class="data-stat-value" id="dataStatsProjects">0</div>
+                                <div class="data-stat-label">Проекти</div>
+                            </div>
+                            <div class="data-stat-item">
+                                <div class="data-stat-value" id="dataStatsBudget">0 лв</div>
+                                <div class="data-stat-label">Общ бюджет</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Експорт JSON -->
+                    <div class="data-section">
+                        <h4>💾 Пълен Бекъп (JSON)</h4>
+                        <p>Експортирайте всички данни в JSON формат. Подходящо за архивиране и възстановяване.</p>
+                        <div class="data-actions">
+                            <button class="btn-data btn-export-json" onclick="exportFullBackup()">
+                                📥 Изтегли JSON Бекъп
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Експорт CSV -->
+                    <div class="data-section">
+                        <h4>📊 Експорт CSV</h4>
+                        <p>Експортирайте данни в CSV формат за Excel, Google Sheets и други таблични редактори.</p>
+                        <div class="data-actions">
+                            <button class="btn-data btn-export-csv" onclick="exportClientsCSV()">
+                                👥 Експорт клиенти
+                            </button>
+                            <button class="btn-data btn-export-csv" onclick="exportProjectsCSV()">
+                                📋 Експорт проекти
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Импорт -->
+                    <div class="data-section">
+                        <h4>📤 Импорт на данни</h4>
+                        <p>Възстановете данни от JSON бекъп файл.</p>
+                        <div class="import-zone" id="importZone" onclick="document.getElementById('importFileInput').click()">
+                            <div style="font-size: 3em; margin-bottom: 10px;">📂</div>
+                            <div style="font-weight: bold; margin-bottom: 10px;">Кликнете за избор на файл</div>
+                            <div style="font-size: 0.9em; color: #666;">или пуснете JSON файл тук</div>
+                            <input type="file" id="importFileInput" accept=".json" onchange="handleImportFile(event)">
+                        </div>
+                        <div class="import-options">
+                            <div class="import-option">
+                                <input type="radio" id="importMerge" name="importMode" value="merge" checked>
+                                <label for="importMerge">➕ Добави към съществуващи</label>
+                            </div>
+                            <div class="import-option">
+                                <input type="radio" id="importReplace" name="importMode" value="replace">
+                                <label for="importReplace">🔄 Замени всички данни</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-buttons">
+                <button type="button" class="btn btn-secondary" onclick="closeModal('dataModal')">Затвори</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Modal за добавяне на проект -->
     <div id="projectModal" class="modal">
         <div class="modal-content">
@@ -1583,6 +1854,328 @@
             } catch (error) {
                 debugLog('Грешка при запазване на тема:', error);
             }
+        }
+        
+        // 📦 ЕТАП 8: ЕКСПОРТ И АРХИВИРАНЕ НА ДАННИ
+        
+        // Генериране на име на файл с дата и час
+        function generateFileName(prefix, extension) {
+            const now = new Date();
+            const dateStr = now.toISOString().split('T')[0]; // YYYY-MM-DD
+            const timeStr = now.toTimeString().split(' ')[0].replace(/:/g, '-'); // HH-MM-SS
+            return `${prefix}_${dateStr}_${timeStr}.${extension}`;
+        }
+        
+        // Изтегляне на файл
+        function downloadFile(content, filename, mimeType) {
+            const blob = new Blob([content], { type: mimeType });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = filename;
+            link.click();
+            URL.revokeObjectURL(url);
+            debugLog('Файл изтеглен:', filename);
+        }
+        
+        // 💾 Пълен бекъп (JSON)
+        function exportFullBackup() {
+            debugLog('Експорт на пълен бекъп...');
+            
+            try {
+                const stats = calculateStatistics();
+                const financialStats = calculateFinancialStats();
+                
+                const exportData = {
+                    version: '2.0-autonomous',
+                    exportedAt: new Date().toISOString(),
+                    exportedBy: 'Autonomous Client Profiles System',
+                    statistics: {
+                        totalClients: stats.totalClients,
+                        totalProjects: stats.totalProjects,
+                        totalBudget: financialStats.total,
+                        byStatus: {
+                            planning: stats.planning,
+                            active: stats.active,
+                            completed: stats.completed,
+                            onHold: stats.onHold
+                        }
+                    },
+                    data: clientProfiles,
+                    theme: currentTheme
+                };
+                
+                const jsonStr = JSON.stringify(exportData, null, 2);
+                const filename = generateFileName('autonomous-full-backup', 'json');
+                
+                downloadFile(jsonStr, filename, 'application/json');
+                updateStatusBanner(`Пълен бекъп експортиран: ${filename}`, 'success');
+                
+            } catch (error) {
+                debugLog('Грешка при експорт на бекъп:', error);
+                updateStatusBanner('Грешка при експорт на бекъп!', 'error');
+            }
+        }
+        
+        // 📊 Генериране на CSV стринг
+        function arrayToCSV(headers, rows) {
+            // Escape функция за CSV
+            const escapeCSV = (value) => {
+                if (value === null || value === undefined) return '';
+                const str = String(value);
+                if (str.includes(',') || str.includes('"') || str.includes('\n')) {
+                    return '"' + str.replace(/"/g, '""') + '"';
+                }
+                return str;
+            };
+            
+            // Заглавна част
+            let csv = headers.map(escapeCSV).join(',') + '\n';
+            
+            // Редове
+            rows.forEach(row => {
+                csv += row.map(escapeCSV).join(',') + '\n';
+            });
+            
+            return csv;
+        }
+        
+        // 👥 Експорт на клиенти в CSV
+        function exportClientsCSV() {
+            debugLog('Експорт на клиенти в CSV...');
+            
+            try {
+                const headers = [
+                    'Име',
+                    'Email',
+                    'Телефон',
+                    'Компания',
+                    'Брой проекти',
+                    'Общ бюджет (лв)',
+                    'Активни проекти',
+                    'Завършени проекти',
+                    'Дата на добавяне'
+                ];
+                
+                const rows = clientProfiles.map(profile => {
+                    const totalBudget = getClientTotalBudget(profile);
+                    const activeProjects = profile.projects.filter(p => p.status === 'active').length;
+                    const completedProjects = profile.projects.filter(p => p.status === 'completed').length;
+                    
+                    return [
+                        profile.client.name,
+                        profile.client.email,
+                        profile.client.phone || '',
+                        profile.client.company || '',
+                        profile.projects.length,
+                        totalBudget.toFixed(2),
+                        activeProjects,
+                        completedProjects,
+                        new Date(profile.client.created).toLocaleDateString('bg-BG')
+                    ];
+                });
+                
+                const csv = arrayToCSV(headers, rows);
+                const filename = generateFileName('clients', 'csv');
+                
+                // Добавяме BOM за правилно отваряне в Excel
+                const csvWithBOM = '\ufeff' + csv;
+                downloadFile(csvWithBOM, filename, 'text/csv;charset=utf-8;');
+                
+                updateStatusBanner(`Клиенти експортирани: ${filename}`, 'success');
+                
+            } catch (error) {
+                debugLog('Грешка при експорт на клиенти:', error);
+                updateStatusBanner('Грешка при експорт на CSV!', 'error');
+            }
+        }
+        
+        // 📋 Експорт на проекти в CSV
+        function exportProjectsCSV() {
+            debugLog('Експорт на проекти в CSV...');
+            
+            try {
+                const headers = [
+                    'Проект',
+                    'Клиент',
+                    'Email на клиент',
+                    'Статус',
+                    'Бюджет (лв)',
+                    'Начална дата',
+                    'Крайна дата',
+                    'Дни до крайен срок',
+                    'Дата на добавяне'
+                ];
+                
+                const rows = [];
+                
+                clientProfiles.forEach(profile => {
+                    profile.projects.forEach(project => {
+                        const deadlineInfo = analyzeDaysToDealine(project.endDate);
+                        const statusNames = {
+                            'planning': 'Планиране',
+                            'active': 'Активен',
+                            'completed': 'Завършен',
+                            'on-hold': 'Спрян'
+                        };
+                        
+                        rows.push([
+                            project.name,
+                            profile.client.name,
+                            profile.client.email,
+                            statusNames[project.status] || project.status,
+                            project.budget ? parseFloat(project.budget).toFixed(2) : '0.00',
+                            project.startDate ? new Date(project.startDate).toLocaleDateString('bg-BG') : '',
+                            project.endDate ? new Date(project.endDate).toLocaleDateString('bg-BG') : '',
+                            deadlineInfo.days !== null ? deadlineInfo.days : 'Няма',
+                            new Date(project.created).toLocaleDateString('bg-BG')
+                        ]);
+                    });
+                });
+                
+                const csv = arrayToCSV(headers, rows);
+                const filename = generateFileName('projects', 'csv');
+                
+                // Добавяме BOM за правилно отваряне в Excel
+                const csvWithBOM = '\ufeff' + csv;
+                downloadFile(csvWithBOM, filename, 'text/csv;charset=utf-8;');
+                
+                updateStatusBanner(`Проекти експортирани: ${filename}`, 'success');
+                
+            } catch (error) {
+                debugLog('Грешка при експорт на проекти:', error);
+                updateStatusBanner('Грешка при експорт на CSV!', 'error');
+            }
+        }
+        
+        // 📤 Импорт на данни
+        function handleImportFile(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            debugLog('Начало на импорт на файл:', file.name);
+            
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                try {
+                    const importedData = JSON.parse(e.target.result);
+                    
+                    // Валидация на данните
+                    if (!importedData.data || !Array.isArray(importedData.data)) {
+                        throw new Error('Невалиден формат на файла!');
+                    }
+                    
+                    // Проверяваме режима на импорт
+                    const importMode = document.querySelector('input[name="importMode"]:checked').value;
+                    
+                    let newData = importedData.data;
+                    let message = '';
+                    
+                    if (importMode === 'replace') {
+                        // Замяна на всички данни
+                        if (confirm(`ВНИМАНИЕ! Ще замените всички ${clientProfiles.length} съществуващи клиента с ${newData.length} клиента от файла.\n\nСигурни ли сте?`)) {
+                            clientProfiles = newData;
+                            message = `Данните са заменени! Заредени ${newData.length} клиента.`;
+                        } else {
+                            updateStatusBanner('Импортът е отказан.', 'info');
+                            event.target.value = ''; // Ресетваме file input
+                            return;
+                        }
+                    } else {
+                        // Добавяне към съществуващи
+                        const originalCount = clientProfiles.length;
+                        
+                        // Проверяваме за дубликати по email
+                        const existingEmails = new Set(clientProfiles.map(p => p.client.email.toLowerCase()));
+                        const newClients = newData.filter(p => !existingEmails.has(p.client.email.toLowerCase()));
+                        
+                        clientProfiles = [...clientProfiles, ...newClients];
+                        message = `Добавени ${newClients.length} нови клиента. (Пропуснати ${newData.length - newClients.length} дубликата)`;
+                    }
+                    
+                    // Запазваме и обновяваме
+                    if (saveData()) {
+                        displayClients();
+                        updateProjectClientOptions();
+                        updateStatusBanner(message, 'success');
+                        closeModal('dataModal');
+                        
+                        // Зареждаме темата ако е включена в бекъпа
+                        if (importedData.theme) {
+                            applyTheme(importedData.theme, true);
+                            localStorage.setItem(THEME_STORAGE_KEY, importedData.theme);
+                        }
+                    }
+                    
+                } catch (error) {
+                    debugLog('Грешка при импорт:', error);
+                    updateStatusBanner('Грешка при четене на файла: ' + error.message, 'error');
+                }
+                
+                // Ресетваме file input
+                event.target.value = '';
+            };
+            
+            reader.onerror = function() {
+                debugLog('Грешка при четене на файл');
+                updateStatusBanner('Грешка при четене на файла!', 'error');
+                event.target.value = '';
+            };
+            
+            reader.readAsText(file);
+        }
+        
+        // Drag & Drop функционалност
+        function setupImportDragDrop() {
+            const importZone = document.getElementById('importZone');
+            if (!importZone) return;
+            
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                importZone.addEventListener(eventName, preventDefaults, false);
+            });
+            
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            
+            ['dragenter', 'dragover'].forEach(eventName => {
+                importZone.addEventListener(eventName, () => {
+                    importZone.classList.add('drag-over');
+                }, false);
+            });
+            
+            ['dragleave', 'drop'].forEach(eventName => {
+                importZone.addEventListener(eventName, () => {
+                    importZone.classList.remove('drag-over');
+                }, false);
+            });
+            
+            importZone.addEventListener('drop', (e) => {
+                const dt = e.dataTransfer;
+                const files = dt.files;
+                
+                if (files.length > 0) {
+                    const file = files[0];
+                    if (file.type === 'application/json' || file.name.endsWith('.json')) {
+                        document.getElementById('importFileInput').files = files;
+                        handleImportFile({ target: { files: files } });
+                    } else {
+                        updateStatusBanner('Моля, изберете JSON файл!', 'warning');
+                    }
+                }
+            }, false);
+        }
+        
+        // Обновяване на статистиките в data modal
+        function updateDataModalStats() {
+            const stats = calculateStatistics();
+            const financialStats = calculateFinancialStats();
+            
+            document.getElementById('dataStatsClients').textContent = stats.totalClients;
+            document.getElementById('dataStatsProjects').textContent = stats.totalProjects;
+            document.getElementById('dataStatsBudget').textContent = formatCurrency(financialStats.total);
         }
         
         // 🐛 ДЕБЪГ ФУНКЦИИ
@@ -2901,11 +3494,16 @@
                 document.querySelector('#projectModal .modal-header h3').textContent = 'Добави нов проект';
                 openModal('projectModal');
             });
-            document.getElementById('exportBtn').addEventListener('click', exportData);
             document.getElementById('clearBtn').addEventListener('click', clearAllData);
 
             // 🎨 ЕТАП 7: Превключвател на теми
             document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+            
+            // 📦 ЕТАП 8: Бутон за данни
+            document.getElementById('dataToggle').addEventListener('click', () => {
+                updateDataModalStats();
+                openModal('dataModal');
+            });
 
             // Затваряне на modals
             document.querySelectorAll('.close').forEach(closeBtn => {
@@ -2993,6 +3591,9 @@
             });
             
             debugLog('Event listeners настроени успешно');
+            
+            // 📦 ЕТАП 8: Drag & Drop за импорт
+            setupImportDragDrop();
         }
 
         // 🏁 СТАРТИРАНЕ
@@ -3021,6 +3622,11 @@
         window.markMessageSent = markMessageSent;
         // 🎨 ЕТАП 7: Функции за теми
         window.toggleTheme = toggleTheme;
+        // 📦 ЕТАП 8: Функции за експорт/импорт
+        window.exportFullBackup = exportFullBackup;
+        window.exportClientsCSV = exportClientsCSV;
+        window.exportProjectsCSV = exportProjectsCSV;
+        window.handleImportFile = handleImportFile;
         
         console.log('🛡️ АВТОНОМНА СИСТЕМА: Готова за работа!');
     </script>
