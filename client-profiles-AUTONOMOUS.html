@@ -1990,6 +1990,84 @@
             ✅ Автономната система е активна и готова за работа!
         </div>
 
+        <!-- 💰 ЕТАП 4: Финансов Dashboard -->
+        <div class="financial-panel" id="financialPanel" style="display: none;">
+            <div class="financial-header">
+                <h3>💰 Финансов Преглед</h3>
+            </div>
+            <div class="financial-content-grid">
+                <div class="financial-stats">
+                    <div class="financial-stat">
+                        <div class="financial-label">💎 Общ Бюджет</div>
+                        <div class="financial-value" id="totalBudget">0 лв</div>
+                    </div>
+                    <div class="financial-stat">
+                        <div class="financial-label">✅ Активни Проекти</div>
+                        <div class="financial-value" id="activeBudget">0 лв</div>
+                    </div>
+                    <div class="financial-stat">
+                        <div class="financial-label">✔️ Реализирани</div>
+                        <div class="financial-value" id="completedBudget">0 лв</div>
+                    </div>
+                    <div class="financial-stat">
+                        <div class="financial-label">📝 Планирани</div>
+                        <div class="financial-value" id="planningBudget">0 лв</div>
+                    </div>
+                    <div class="financial-stat">
+                        <div class="financial-label">📊 Среден Бюджет</div>
+                        <div class="financial-value" id="averageBudget">0 лв</div>
+                    </div>
+                </div>
+                <div class="top-clients-section" id="topClientsSection">
+                    <h4>🏆 Топ 5 Клиенти по Стойност</h4>
+                    <div id="topClientsList">
+                        <!-- Динамично съдържание -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 📊 ЕТАП 5: Визуализационен панел -->
+        <div class="visualization-panel" id="visualizationPanel" style="display: none;">
+            <div class="visualization-header">
+                <h3>📊 Визуализации и Анализи</h3>
+            </div>
+            <div class="charts-grid">
+                <!-- Pie Chart: Разпределение по статус -->
+                <div class="chart-container">
+                    <div class="chart-title">🥧 Разпределение по Статус</div>
+                    <div class="chart-canvas-wrapper">
+                        <canvas id="statusPieChart" width="300" height="300"></canvas>
+                    </div>
+                    <div class="chart-legend" id="statusLegend">
+                        <!-- Динамично съдържание -->
+                    </div>
+                </div>
+
+                <!-- Bar Chart: Топ клиенти по проекти -->
+                <div class="chart-container">
+                    <div class="chart-title">📊 Топ 5 Клиенти (по брой проекти)</div>
+                    <div class="chart-canvas-wrapper">
+                        <canvas id="clientsBarChart" width="400" height="300"></canvas>
+                    </div>
+                    <div class="chart-stats" id="clientsBarStats">
+                        <!-- Динамично съдържание -->
+                    </div>
+                </div>
+
+                <!-- Pie Chart: Бюджетно разпределение -->
+                <div class="chart-container">
+                    <div class="chart-title">💰 Разпределение на Бюджет по Статус</div>
+                    <div class="chart-canvas-wrapper">
+                        <canvas id="budgetPieChart" width="300" height="300"></canvas>
+                    </div>
+                    <div class="chart-legend" id="budgetLegend">
+                        <!-- Динамично съдържание -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="action-buttons">
             <button id="addClientBtn" class="btn btn-primary">
                 👤 Добави нов клиент
@@ -2194,43 +2272,6 @@
             </div>
         </div>
 
-        <!-- 💰 ЕТАП 4: Финансов Dashboard -->
-        <div class="financial-panel" id="financialPanel" style="display: none;">
-            <div class="financial-header">
-                <h3>💰 Финансов Преглед</h3>
-            </div>
-            <div class="financial-content-grid">
-                <div class="financial-stats">
-                    <div class="financial-stat">
-                        <div class="financial-label">💎 Общ Бюджет</div>
-                        <div class="financial-value" id="totalBudget">0 лв</div>
-                    </div>
-                    <div class="financial-stat">
-                        <div class="financial-label">✅ Активни Проекти</div>
-                        <div class="financial-value" id="activeBudget">0 лв</div>
-                    </div>
-                    <div class="financial-stat">
-                        <div class="financial-label">✔️ Реализирани</div>
-                        <div class="financial-value" id="completedBudget">0 лв</div>
-                    </div>
-                    <div class="financial-stat">
-                        <div class="financial-label">📝 Планирани</div>
-                        <div class="financial-value" id="planningBudget">0 лв</div>
-                    </div>
-                    <div class="financial-stat">
-                        <div class="financial-label">📊 Среден Бюджет</div>
-                        <div class="financial-value" id="averageBudget">0 лв</div>
-                    </div>
-                </div>
-                <div class="top-clients-section" id="topClientsSection">
-                    <h4>🏆 Топ 5 Клиенти по Стойност</h4>
-                    <div id="topClientsList">
-                        <!-- Динамично съдържание -->
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <!-- 🔔 ЕТАП 6: Комуникационен панел -->
         <div class="communication-panel" id="communicationPanel" style="display: none;">
             <div class="communication-header">
@@ -2267,47 +2308,6 @@
                 <div class="team-stat-section">
                     <h4>📊 Разпределение по Роли</h4>
                     <div id="roleDistribution">
-                        <!-- Динамично съдържание -->
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 📊 ЕТАП 5: Визуализационен панел -->
-        <div class="visualization-panel" id="visualizationPanel" style="display: none;">
-            <div class="visualization-header">
-                <h3>📊 Визуализации и Анализи</h3>
-            </div>
-            <div class="charts-grid">
-                <!-- Pie Chart: Разпределение по статус -->
-                <div class="chart-container">
-                    <div class="chart-title">🥧 Разпределение по Статус</div>
-                    <div class="chart-canvas-wrapper">
-                        <canvas id="statusPieChart" width="300" height="300"></canvas>
-                    </div>
-                    <div class="chart-legend" id="statusLegend">
-                        <!-- Динамично съдържание -->
-                    </div>
-                </div>
-
-                <!-- Bar Chart: Топ клиенти по проекти -->
-                <div class="chart-container">
-                    <div class="chart-title">📊 Топ 5 Клиенти (по брой проекти)</div>
-                    <div class="chart-canvas-wrapper">
-                        <canvas id="clientsBarChart" width="400" height="300"></canvas>
-                    </div>
-                    <div class="chart-stats" id="clientsBarStats">
-                        <!-- Динамично съдържание -->
-                    </div>
-                </div>
-
-                <!-- Pie Chart: Бюджетно разпределение -->
-                <div class="chart-container">
-                    <div class="chart-title">💰 Разпределение на Бюджет по Статус</div>
-                    <div class="chart-canvas-wrapper">
-                        <canvas id="budgetPieChart" width="300" height="300"></canvas>
-                    </div>
-                    <div class="chart-legend" id="budgetLegend">
                         <!-- Динамично съдържание -->
                     </div>
                 </div>
