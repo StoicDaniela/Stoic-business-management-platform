@@ -7,52 +7,49 @@
     
     <!-- 🛡️ ВГРАДЕН CSS - БЕЗ ВЪНШНИ ФАЙЛОВЕ -->
     <style>
-        /* 🎨 Markets-inspired Design System */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
-        
+        /* 🎨 ЕТАП 7: CSS ПРОМЕНЛИВИ ЗА ТЕМИ */
         :root {
-            /* Modern Markets Color Palette */
-            --bg-gradient-start: #0f172a;
-            --bg-gradient-end: #1e293b;
-            --surface-bg: #1e293b;
-            --surface-hover: #334155;
-            --card-bg: #1e293b;
-            --card-shadow: rgba(0, 0, 0, 0.3);
-            --text-primary: #e2e8f0;
-            --text-secondary: #94a3b8;
-            --border-color: #334155;
-            --input-bg: #0f172a;
-            --input-border: #334155;
-            --project-item-bg: #0f172a;
-            --modal-bg: #1e293b;
-            --canvas-bg: #ffffff;
+            /* Светла тема (по подразбиране) */
+            --bg-gradient-start: #667eea;
+            --bg-gradient-end: #764ba2;
+            --surface-bg: rgba(255, 255, 255, 0.95);
+            --surface-hover: rgba(255, 255, 255, 1);
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --card-shadow: rgba(0, 0, 0, 0.1);
+            --text-primary: #333;
+            --text-secondary: #666;
+            --border-color: #f0f0f0;
+            --input-bg: white;
+            --input-border: #e0e0e0;
+            --project-item-bg: #f8f9fa;
+            --modal-bg: white;
+            --canvas-bg: rgba(255, 255, 255, 0.95);
             
-            /* Modern Accent Colors */
-            --accent-primary: #3b82f6;
-            --accent-secondary: #1d4ed8;
-            --success-color: #10b981;
-            --warning-color: #f59e0b;
-            --error-color: #ef4444;
-            --info-color: #06b6d4;
+            /* Акцентни цветове (еднакви и в двете теми) */
+            --accent-primary: #667eea;
+            --accent-secondary: #764ba2;
+            --success-color: #4CAF50;
+            --warning-color: #ff9800;
+            --error-color: #f44336;
+            --info-color: #2196f3;
         }
 
-        [data-theme="light"] {
-            /* Light theme for markets style */
-            --bg-gradient-start: #f8fafc;
-            --bg-gradient-end: #e2e8f0;
-            --surface-bg: #ffffff;
-            --surface-hover: #f1f5f9;
-            --card-bg: #ffffff;
-            --card-shadow: rgba(0, 0, 0, 0.1);
-            --text-primary: #0f172a;
-            --text-secondary: #64748b;
-            --border-color: #e2e8f0;
-            --input-bg: #ffffff;
-            --input-border: #cbd5e1;
-            --project-item-bg: #f8fafc;
-            --modal-bg: #ffffff;
-            --canvas-bg: #ffffff;
+        [data-theme="dark"] {
+            /* Тъмна тема */
+            --bg-gradient-start: #1a1a2e;
+            --bg-gradient-end: #16213e;
+            --surface-bg: rgba(42, 42, 60, 0.95);
+            --surface-hover: rgba(52, 52, 70, 0.95);
+            --card-bg: rgba(42, 42, 60, 0.95);
+            --card-shadow: rgba(0, 0, 0, 0.4);
+            --text-primary: #e0e0e0;
+            --text-secondary: #b0b0b0;
+            --border-color: #3a3a50;
+            --input-bg: #2a2a3c;
+            --input-border: #3a3a50;
+            --project-item-bg: #32324a;
+            --modal-bg: #2a2a3c;
+            --canvas-bg: rgba(255, 255, 255, 0.98);
         }
 
         * {
@@ -62,13 +59,11 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
             min-height: 100vh;
             color: var(--text-primary);
             transition: background 0.3s ease, color 0.3s ease;
-            font-weight: 400;
-            letter-spacing: -0.01em;
         }
 
         .container {
@@ -79,23 +74,20 @@
 
         .header {
             background: var(--surface-bg);
-            border-radius: 16px;
-            padding: 32px;
-            margin-bottom: 24px;
-            box-shadow: 0 1px 3px var(--card-shadow);
-            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px var(--card-shadow);
             text-align: center;
             position: relative;
-            transition: all 0.3s ease;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
         }
 
         .header h1 {
             color: var(--accent-primary);
-            font-size: 2.25em;
-            font-weight: 700;
-            margin-bottom: 8px;
+            font-size: 2.5em;
+            margin-bottom: 10px;
             transition: color 0.3s ease;
-            letter-spacing: -0.02em;
         }
 
         .header p {
@@ -112,16 +104,16 @@
             background: var(--accent-primary);
             color: white;
             border: none;
-            border-radius: 8px;
-            padding: 10px 18px;
+            border-radius: 50px;
+            padding: 12px 20px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 16px;
             font-weight: 600;
             display: flex;
             align-items: center;
-            gap: 6px;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-            transition: all 0.2s ease;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
             z-index: 10;
         }
         
@@ -129,27 +121,26 @@
         .data-toggle {
             position: absolute;
             top: 20px;
-            right: 140px;
-            background: var(--success-color);
+            right: 160px;
+            background: linear-gradient(45deg, #f7b733, #fc4a1a);
             color: white;
             border: none;
-            border-radius: 8px;
-            padding: 10px 18px;
+            border-radius: 50px;
+            padding: 12px 20px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 16px;
             font-weight: 600;
             display: flex;
             align-items: center;
-            gap: 6px;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-            transition: all 0.2s ease;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(247, 183, 51, 0.3);
+            transition: all 0.3s ease;
             z-index: 10;
         }
         
         .data-toggle:hover {
-            background: #059669;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(247, 183, 51, 0.5);
         }
         
         .data-toggle:active {
@@ -157,9 +148,8 @@
         }
 
         .theme-toggle:hover {
-            background: var(--accent-secondary);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
         }
 
         .theme-toggle:active {
@@ -167,20 +157,18 @@
         }
 
         [data-theme="dark"] .theme-toggle {
-            background: var(--accent-primary);
+            background: linear-gradient(45deg, #667eea, #764ba2);
         }
 
         .status-banner {
-            background: var(--success-color);
+            background: linear-gradient(45deg, #4CAF50, #45a049);
             color: white;
-            padding: 12px 20px;
-            border-radius: 8px;
+            padding: 15px;
+            border-radius: 10px;
             margin-bottom: 20px;
             text-align: center;
-            font-weight: 600;
-            font-size: 14px;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
         }
 
         .action-buttons {
@@ -191,49 +179,37 @@
         }
 
         .btn {
-            padding: 12px 20px;
+            padding: 15px 25px;
             border: none;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
+            border-radius: 10px;
+            font-size: 16px;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
-            gap: 8px;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            gap: 10px;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         .btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
         }
 
         .btn-primary {
-            background: var(--accent-primary);
+            background: linear-gradient(45deg, #667eea, #764ba2);
             color: white;
-        }
-        
-        .btn-primary:hover {
-            background: var(--accent-secondary);
         }
 
         .btn-secondary {
-            background: var(--text-secondary);
+            background: linear-gradient(45deg, #f093fb, #f5576c);
             color: white;
-        }
-        
-        .btn-secondary:hover {
-            background: #64748b;
         }
 
         .btn-success {
-            background: var(--success-color);
+            background: linear-gradient(45deg, #4CAF50, #45a049);
             color: white;
-        }
-        
-        .btn-success:hover {
-            background: #059669;
         }
 
         .clients-grid {
@@ -244,16 +220,14 @@
 
         .client-card {
             background: var(--card-bg);
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 1px 3px var(--card-shadow);
-            border: 1px solid var(--border-color);
-            transition: all 0.2s ease;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px var(--card-shadow);
+            transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
         }
 
         .client-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px var(--card-shadow);
+            transform: translateY(-5px);
         }
 
         .client-header {
@@ -268,8 +242,7 @@
 
         .client-header h3 {
             color: var(--accent-primary);
-            font-size: 1.25em;
-            font-weight: 600;
+            font-size: 1.4em;
             transition: color 0.3s ease;
         }
 
@@ -293,34 +266,34 @@
 
         .btn-edit {
             background: transparent;
-            color: var(--text-secondary);
+            color: #666;
             transition: all 0.3s ease;
         }
         
         .btn-edit:hover {
-            background: rgba(59, 130, 246, 0.1);
-            color: var(--accent-primary);
+            background: rgba(52, 152, 219, 0.1);
+            color: #3498db;
             transform: scale(1.1);
         }
 
         .btn-delete {
             background: transparent;
-            color: var(--text-secondary);
+            color: #666;
             transition: all 0.3s ease;
         }
         
         .btn-delete:hover {
-            background: rgba(239, 68, 68, 0.1);
-            color: var(--error-color);
+            background: rgba(231, 76, 60, 0.1);
+            color: #e74c3c;
             transform: scale(1.1);
         }
 
         .client-info {
-            background: var(--project-item-bg);
-            border-radius: 8px;
-            padding: 16px;
-            margin-bottom: 16px;
-            border-left: 3px solid var(--accent-primary);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-left: 4px solid var(--accent-primary);
         }
         
         .client-info p {
@@ -331,34 +304,33 @@
         .projects-section {
             margin-top: 20px;
             padding-top: 20px;
-            border-top: 1px solid var(--border-color);
+            border-top: 2px solid var(--border-color);
             transition: border-color 0.3s ease;
+            background: rgba(248, 249, 250, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px dashed var(--border-color);
         }
 
         .projects-section h4 {
-            color: var(--text-primary);
-            margin-bottom: 12px;
+            color: var(--accent-primary);
+            margin-bottom: 15px;
             transition: color 0.3s ease;
-            font-size: 1em;
-            font-weight: 600;
-            padding-bottom: 8px;
+            font-size: 1.15em;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-color);
         }
 
         .project-item {
             background: var(--project-item-bg);
-            padding: 12px;
-            border-radius: 6px;
-            margin-bottom: 8px;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
             display: grid;
             grid-template-columns: 2fr 1fr 1fr 50px;
-            gap: 12px;
+            gap: 10px;
             align-items: center;
-            transition: background 0.2s ease;
-            border: 1px solid var(--border-color);
-        }
-        
-        .project-item:hover {
-            background: var(--surface-hover);
+            transition: background 0.3s ease;
         }
 
         .project-name {
@@ -378,22 +350,18 @@
             border-radius: 15px;
             font-size: 12px;
             text-align: center;
-            font-weight: 600;
-            background: var(--project-item-bg);
-            color: var(--text-secondary);
-            border: 1px solid var(--border-color);
+            font-weight: bold;
         }
 
-        .status-planning { border-color: var(--text-secondary); }
-        .status-active { border-color: var(--accent-primary); color: var(--accent-primary); }
-        .status-completed { border-color: var(--success-color); color: var(--success-color); }
-        .status-on-hold { border-color: var(--text-secondary); }
+        .status-planning { background: #fff3cd; color: #856404; }
+        .status-active { background: #d4edda; color: #155724; }
+        .status-completed { background: #cce4ff; color: #0066cc; }
+        .status-on-hold { background: #f8d7da; color: #721c24; }
 
         .project-budget {
             text-align: right;
             font-weight: 600;
-            font-family: 'JetBrains Mono', monospace;
-            color: var(--success-color);
+            color: #27ae60;
         }
 
         .no-data {
@@ -423,14 +391,13 @@
             background-color: var(--modal-bg);
             margin: 5% auto;
             padding: 0;
-            border-radius: 12px;
+            border-radius: 15px;
             width: 90%;
             max-width: 500px;
             max-height: 90vh;
             display: flex;
             flex-direction: column;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--border-color);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             animation: modalSlideIn 0.3s ease;
             transition: background-color 0.3s ease;
         }
@@ -441,8 +408,8 @@
         }
 
         .modal-header {
-            padding: 20px 24px;
-            border-bottom: 1px solid var(--border-color);
+            padding: 20px 30px;
+            border-bottom: 2px solid var(--border-color);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -456,13 +423,13 @@
         }
 
         .modal-body {
-            padding: 24px;
+            padding: 30px;
             overflow-y: auto;
             flex: 1;
         }
 
         .close {
-            color: var(--text-secondary);
+            color: #aaa;
             font-size: 28px;
             font-weight: bold;
             cursor: pointer;
@@ -471,7 +438,7 @@
         }
 
         .close:hover {
-            color: var(--error-color);
+            color: #e74c3c;
         }
 
         .form-group {
@@ -489,11 +456,11 @@
         .form-group input,
         .form-group select {
             width: 100%;
-            padding: 12px 16px;
-            border: 1px solid var(--input-border);
+            padding: 12px;
+            border: 2px solid var(--input-border);
             border-radius: 8px;
-            font-size: 14px;
-            transition: all 0.2s ease;
+            font-size: 16px;
+            transition: border-color 0.3s ease, background 0.3s ease, color 0.3s ease;
             background: var(--input-bg);
             color: var(--text-primary);
         }
@@ -501,8 +468,7 @@
         .form-group input:focus,
         .form-group select:focus {
             outline: none;
-            border-color: var(--accent-primary);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            border-color: #667eea;
         }
 
         .form-buttons {
@@ -521,12 +487,11 @@
         /* 🔍 ЕТАП 2: Стилове за търсене и филтри */
         .search-filter-section {
             background: var(--surface-bg);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 1px 3px var(--card-shadow);
-            border: 1px solid var(--border-color);
-            transition: background 0.3s ease;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px var(--card-shadow);
+            transition: background 0.3s ease, box-shadow 0.3s ease;
         }
 
         .search-controls {
@@ -539,12 +504,11 @@
         .filter-box select,
         .sort-box select {
             width: 100%;
-            padding: 12px 16px;
-            border: 1px solid var(--input-border);
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 500;
-            transition: all 0.2s ease;
+            padding: 15px;
+            border: 2px solid var(--input-border);
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
             background: var(--input-bg);
             color: var(--text-primary);
         }
@@ -553,71 +517,59 @@
         .filter-box select:focus,
         .sort-box select:focus {
             outline: none;
-            border-color: var(--accent-primary);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
 
         .search-box input::placeholder {
-            color: var(--text-secondary);
+            color: #999;
         }
 
         /* 📊 Статистически панел */
         .statistics-panel {
-            background: var(--surface-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 16px;
-            box-shadow: 0 1px 3px var(--card-shadow);
+            gap: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
         .stat-item {
             text-align: center;
-            padding: 16px;
-            background: var(--project-item-bg);
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            transition: all 0.2s ease;
-        }
-        
-        .stat-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px var(--card-shadow);
+            color: white;
         }
 
         .stat-value {
-            font-size: 2em;
-            font-weight: 700;
-            font-family: 'JetBrains Mono', monospace;
-            margin-bottom: 4px;
-            color: var(--accent-primary);
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .stat-label {
-            font-size: 0.875em;
-            color: var(--text-secondary);
-            font-weight: 500;
+            font-size: 0.9em;
+            opacity: 0.9;
+            font-weight: 600;
         }
 
         /* ⏰ ЕТАП 3: Предупреждения за крайни срокове */
         .deadlines-alert-section {
-            background: var(--surface-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            border-radius: 15px;
             padding: 25px;
             margin-bottom: 25px;
-            box-shadow: 0 1px 3px var(--card-shadow);
-            color: var(--text-primary);
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+            color: white;
         }
 
         .alert-header h3 {
             margin: 0 0 20px 0;
             font-size: 1.5em;
             text-align: center;
-            color: var(--text-primary);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .alert-stats {
@@ -628,25 +580,24 @@
         }
 
         .alert-stat {
-            background: var(--project-item-bg);
-            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.2);
             border-radius: 10px;
             padding: 15px;
             text-align: center;
+            backdrop-filter: blur(10px);
             transition: transform 0.3s ease;
         }
 
         .alert-stat:hover {
             transform: translateY(-3px);
-            box-shadow: 0 4px 6px var(--card-shadow);
+            background: rgba(255, 255, 255, 0.3);
         }
 
         .alert-count {
             font-size: 2.5em;
-            font-weight: 700;
-            font-family: 'JetBrains Mono', monospace;
+            font-weight: bold;
             margin-bottom: 5px;
-            color: var(--accent-primary);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .alert-label {
@@ -655,10 +606,10 @@
         }
 
         .urgent-projects {
-            background: var(--project-item-bg);
-            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.15);
             border-radius: 10px;
             padding: 20px;
+            backdrop-filter: blur(10px);
         }
 
         .urgent-projects h4 {
@@ -667,9 +618,8 @@
         }
 
         .urgent-project-item {
-            background: var(--card-bg);
-            color: var(--text-primary);
-            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
             padding: 12px 15px;
             border-radius: 8px;
             margin-bottom: 10px;
@@ -681,7 +631,7 @@
 
         .urgent-project-item:hover {
             transform: translateX(5px);
-            box-shadow: 0 5px 15px var(--card-shadow);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         .urgent-project-info {
@@ -695,7 +645,7 @@
 
         .urgent-project-client {
             font-size: 0.9em;
-            color: var(--text-secondary);
+            color: #666;
         }
 
         .urgent-project-deadline {
@@ -724,37 +674,37 @@
         }
 
         .deadline-overdue::before {
-            background: var(--error-color);
-            box-shadow: 0 0 5px rgba(239, 68, 68, 0.3);
+            background: #ff4444;
+            box-shadow: 0 0 5px rgba(255, 68, 68, 0.5);
         }
 
         .deadline-critical::before {
-            background: var(--warning-color);
-            box-shadow: 0 0 5px rgba(245, 158, 11, 0.3);
+            background: #ff9800;
+            box-shadow: 0 0 5px rgba(255, 152, 0, 0.5);
         }
 
         .deadline-warning::before {
-            background: var(--accent-primary);
-            box-shadow: 0 0 5px rgba(59, 130, 246, 0.3);
+            background: #ffc107;
+            box-shadow: 0 0 5px rgba(255, 193, 7, 0.5);
         }
 
         .deadline-ok::before {
-            background: var(--success-color);
-            box-shadow: 0 0 5px rgba(16, 185, 129, 0.3);
+            background: #4caf50;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
         }
 
         .deadline-none::before {
-            background: var(--text-secondary);
+            background: #9e9e9e;
         }
 
         /* 💰 ЕТАП 4: Финансов Dashboard */
         .financial-panel {
-            background: var(--surface-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 1px 3px var(--card-shadow);
+            background: linear-gradient(135deg, #f7b733 0%, #fc4a1a 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(247, 183, 51, 0.3);
+            color: white;
         }
 
         .financial-header {
@@ -764,51 +714,49 @@
 
         .financial-header h3 {
             margin: 0;
-            font-size: 1.5em;
-            font-weight: 600;
-            color: var(--text-primary);
+            font-size: 1.8em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .financial-stats {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 16px;
-            margin-bottom: 20px;
+            gap: 20px;
+            margin-bottom: 25px;
         }
 
         .financial-stat {
-            background: var(--project-item-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 16px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 20px;
             text-align: center;
-            transition: all 0.2s ease;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
         }
 
         .financial-stat:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px var(--card-shadow);
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.3);
         }
 
         .financial-value {
-            font-size: 1.75em;
-            font-weight: 700;
-            font-family: 'JetBrains Mono', monospace;
-            margin-bottom: 6px;
-            color: var(--accent-primary);
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .financial-label {
-            font-size: 0.875em;
-            font-weight: 500;
-            color: var(--text-secondary);
+            font-size: 0.9em;
+            font-weight: 600;
+            opacity: 0.95;
         }
 
         .top-clients-section {
-            background: var(--project-item-bg);
-            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.15);
             border-radius: 10px;
             padding: 20px;
+            backdrop-filter: blur(10px);
         }
 
         .top-clients-section h4 {
@@ -818,9 +766,8 @@
         }
 
         .top-client-item {
-            background: var(--card-bg);
-            color: var(--text-primary);
-            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
             padding: 15px;
             border-radius: 8px;
             margin-bottom: 12px;
@@ -829,7 +776,7 @@
 
         .top-client-item:hover {
             transform: translateX(5px);
-            box-shadow: 0 5px 15px var(--card-shadow);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         .top-client-header {
@@ -845,14 +792,13 @@
         }
 
         .top-client-value {
-            font-weight: 700;
+            font-weight: bold;
             font-size: 1.2em;
-            font-family: 'JetBrains Mono', monospace;
-            color: var(--accent-primary);
+            color: #f7b733;
         }
 
         .top-client-bar {
-            background: var(--border-color);
+            background: #e0e0e0;
             height: 8px;
             border-radius: 4px;
             overflow: hidden;
@@ -860,7 +806,7 @@
         }
 
         .top-client-bar-fill {
-            background: var(--accent-primary);
+            background: linear-gradient(90deg, #f7b733, #fc4a1a);
             height: 100%;
             border-radius: 4px;
             transition: width 0.5s ease;
@@ -868,7 +814,7 @@
 
         .top-client-info {
             font-size: 0.85em;
-            color: var(--text-secondary);
+            color: #666;
             display: flex;
             justify-content: space-between;
         }
@@ -879,26 +825,23 @@
             padding: 8px 15px;
             border-radius: 20px;
             font-size: 0.95em;
-            font-weight: 600;
+            font-weight: bold;
             margin-top: 10px;
-            background: var(--project-item-bg);
-            color: var(--text-secondary);
-            border: 1px solid var(--border-color);
         }
 
         .client-value-high {
-            border-color: var(--success-color);
-            color: var(--success-color);
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
         }
 
         .client-value-medium {
-            border-color: var(--accent-primary);
-            color: var(--accent-primary);
+            background: linear-gradient(45deg, #ffc107, #ff9800);
+            color: #333;
         }
 
         .client-value-low {
-            border-color: var(--text-secondary);
-            color: var(--text-secondary);
+            background: linear-gradient(45deg, #9e9e9e, #757575);
+            color: white;
         }
 
         .budget-filter {
@@ -919,19 +862,18 @@
 
         .budget-filter select:focus {
             outline: none;
-            border-color: var(--accent-primary);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            border-color: #f7b733;
+            box-shadow: 0 0 0 3px rgba(247, 183, 51, 0.1);
         }
 
         /* 🔔 ЕТАП 6: Алерти и Комуникация */
         .communication-panel {
-            background: var(--surface-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            border-radius: 15px;
             padding: 25px;
             margin-bottom: 25px;
-            box-shadow: 0 1px 3px var(--card-shadow);
-            color: var(--text-primary);
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+            color: white;
         }
 
         .communication-header {
@@ -942,7 +884,7 @@
         .communication-header h3 {
             margin: 0;
             font-size: 1.8em;
-            color: var(--text-primary);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .delayed-projects-list {
@@ -951,17 +893,18 @@
         }
 
         .delayed-project-card {
-            background: var(--project-item-bg);
-            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.15);
             border-radius: 10px;
             padding: 20px;
-            border-left: 3px solid var(--accent-primary);
+            backdrop-filter: blur(10px);
+            border-left: 5px solid #ff4444;
             transition: all 0.3s ease;
         }
 
         .delayed-project-card:hover {
             transform: translateX(5px);
-            box-shadow: 0 5px 20px var(--card-shadow);
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
         }
 
         .delayed-project-header {
@@ -985,11 +928,12 @@
         }
 
         .delay-badge {
-            background: var(--error-color);
+            background: rgba(255, 68, 68, 0.9);
             padding: 8px 15px;
             border-radius: 20px;
-            font-weight: 600;
+            font-weight: bold;
             font-size: 0.9em;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
         }
 
         .communication-actions {
@@ -1003,11 +947,11 @@
             flex: 1;
             min-width: 140px;
             padding: 12px 20px;
-            border: 1px solid var(--border-color);
+            border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: 8px;
-            background: var(--project-item-bg);
-            color: var(--text-primary);
-            font-weight: 600;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
             display: flex;
@@ -1017,34 +961,46 @@
         }
 
         .btn-communicate:hover {
-            background: var(--surface-hover);
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.6);
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px var(--card-shadow);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-email {
+            border-color: rgba(33, 150, 243, 0.5);
         }
 
         .btn-email:hover {
-            background: var(--surface-hover);
+            background: rgba(33, 150, 243, 0.3);
+        }
+
+        .btn-viber {
+            border-color: rgba(123, 88, 195, 0.5);
         }
 
         .btn-viber:hover {
-            background: var(--surface-hover);
+            background: rgba(123, 88, 195, 0.3);
+        }
+
+        .btn-mark-sent {
+            border-color: rgba(76, 175, 80, 0.5);
+            min-width: 100px;
         }
 
         .btn-mark-sent:hover {
-            background: var(--surface-hover);
+            background: rgba(76, 175, 80, 0.3);
         }
 
         .sent-history {
             margin-top: 10px;
             padding: 8px 12px;
-            background: var(--project-item-bg);
-            border: 1px solid var(--success-color);
+            background: rgba(76, 175, 80, 0.2);
             border-radius: 6px;
             font-size: 0.85em;
             display: flex;
             align-items: center;
             gap: 8px;
-            color: var(--success-color);
         }
 
         .no-delays-message {
@@ -1067,22 +1023,22 @@
 
         /* Message preview modal */
         .message-preview {
-            background: var(--project-item-bg);
-            color: var(--text-primary);
-            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
             padding: 20px;
             border-radius: 8px;
             margin-top: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
         }
 
         .message-preview h5 {
             margin: 0 0 10px 0;
-            color: var(--accent-primary);
+            color: #ff6b6b;
             font-size: 1.1em;
         }
 
         .message-preview pre {
-            background: var(--input-bg);
+            background: #f5f5f5;
             padding: 15px;
             border-radius: 6px;
             white-space: pre-wrap;
@@ -1091,8 +1047,6 @@
             font-size: 0.9em;
             line-height: 1.6;
             margin: 0;
-            color: var(--text-primary);
-            border: 1px solid var(--border-color);
         }
         
         /* 📦 ЕТАП 8: Data Export/Import Modal */
@@ -1142,8 +1096,6 @@
             padding: 12px 20px;
             border: none;
             border-radius: 8px;
-            background: var(--accent-primary);
-            color: white;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -1160,17 +1112,17 @@
         }
         
         .btn-export-json {
-            background: var(--accent-primary);
+            background: linear-gradient(45deg, #667eea, #764ba2);
             color: white;
         }
         
         .btn-export-csv {
-            background: var(--success-color);
+            background: linear-gradient(45deg, #11998e, #38ef7d);
             color: white;
         }
         
         .btn-import {
-            background: var(--warning-color);
+            background: linear-gradient(45deg, #f7b733, #fc4a1a);
             color: white;
         }
         
@@ -1271,7 +1223,7 @@
         }
 
         .btn-manage-team {
-            background: var(--accent-primary);
+            background: linear-gradient(45deg, #667eea, #764ba2);
             color: white;
             border: none;
             padding: 8px 15px;
@@ -1286,9 +1238,8 @@
         }
 
         .btn-manage-team:hover {
-            background: var(--accent-secondary);
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px var(--card-shadow);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
         }
 
         .team-members-list {
@@ -1314,13 +1265,13 @@
             box-shadow: 0 3px 10px var(--card-shadow);
         }
 
-        .role-developer { border-color: var(--accent-primary); color: var(--accent-primary); }
-        .role-designer { border-color: var(--accent-primary); color: var(--accent-primary); }
-        .role-manager { border-color: var(--accent-primary); color: var(--accent-primary); }
-        .role-qa { border-color: var(--accent-primary); color: var(--accent-primary); }
-        .role-marketing { border-color: var(--accent-primary); color: var(--accent-primary); }
-        .role-support { border-color: var(--accent-primary); color: var(--accent-primary); }
-        .role-other { border-color: var(--text-secondary); color: var(--text-secondary); }
+        .role-developer { border-color: #3498db; color: #3498db; }
+        .role-designer { border-color: #9b59b6; color: #9b59b6; }
+        .role-manager { border-color: #e74c3c; color: #e74c3c; }
+        .role-qa { border-color: #f39c12; color: #f39c12; }
+        .role-marketing { border-color: #1abc9c; color: #1abc9c; }
+        .role-support { border-color: #34495e; color: #34495e; }
+        .role-other { border-color: #95a5a6; color: #95a5a6; }
 
         .member-name {
             font-weight: 600;
@@ -1430,13 +1381,12 @@
 
         /* Статистики за екипи */
         .team-statistics-panel {
-            background: var(--surface-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
             padding: 25px;
             margin-bottom: 25px;
-            box-shadow: 0 1px 3px var(--card-shadow);
-            color: var(--text-primary);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            color: white;
         }
 
         .team-stats-header {
@@ -1447,7 +1397,7 @@
         .team-stats-header h3 {
             margin: 0;
             font-size: 1.8em;
-            color: var(--text-primary);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .team-stats-grid {
@@ -1457,10 +1407,10 @@
         }
 
         .team-stat-section {
-            background: var(--project-item-bg);
-            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.15);
             border-radius: 10px;
             padding: 20px;
+            backdrop-filter: blur(10px);
         }
 
         .team-stat-section h4 {
@@ -1470,9 +1420,8 @@
         }
 
         .top-member-item {
-            background: var(--card-bg);
-            color: var(--text-primary);
-            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
             padding: 12px 15px;
             border-radius: 8px;
             margin-bottom: 10px;
@@ -1484,7 +1433,7 @@
 
         .top-member-item:hover {
             transform: translateX(5px);
-            box-shadow: 0 5px 15px var(--card-shadow);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         .member-rank {
@@ -1509,13 +1458,12 @@
 
         /* 🔍 ЕТАП 10: РАЗШИРЕНО ФИЛТРИРАНЕ И ТЪРСЕНЕ */
         .advanced-filter-panel {
-            background: var(--surface-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
             padding: 25px;
             margin-bottom: 25px;
-            box-shadow: 0 1px 3px var(--card-shadow);
-            color: var(--text-primary);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            color: white;
         }
 
         .filter-panel-header {
@@ -1528,16 +1476,16 @@
         .filter-panel-header h3 {
             margin: 0;
             font-size: 1.8em;
-            color: var(--text-primary);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
         .btn-toggle-filters {
-            background: var(--project-item-bg);
-            color: var(--text-primary);
-            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
             padding: 10px 20px;
             border-radius: 25px;
             cursor: pointer;
@@ -1549,7 +1497,7 @@
         }
 
         .btn-toggle-filters:hover {
-            background: var(--surface-hover);
+            background: rgba(255, 255, 255, 0.3);
             transform: translateY(-2px);
         }
 
@@ -1561,10 +1509,10 @@
         }
 
         .filter-group {
-            background: var(--project-item-bg);
-            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.15);
             padding: 15px;
             border-radius: 10px;
+            backdrop-filter: blur(10px);
         }
 
         .filter-group label {
@@ -1578,10 +1526,10 @@
         .filter-group select {
             width: 100%;
             padding: 10px;
-            border: 1px solid var(--input-border);
+            border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: 8px;
-            background: var(--input-bg);
-            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
             font-size: 14px;
             transition: all 0.3s ease;
         }
@@ -1589,8 +1537,9 @@
         .filter-group input:focus,
         .filter-group select:focus {
             outline: none;
-            border-color: var(--accent-primary);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            border-color: white;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
         }
 
         .filter-group input::placeholder {
@@ -1617,14 +1566,13 @@
         }
 
         .btn-apply-filters {
-            background: var(--success-color);
+            background: linear-gradient(45deg, #4CAF50, #45a049);
             color: white;
         }
 
         .btn-clear-filters {
-            background: var(--surface-bg);
-            border: 1px solid var(--border-color);
-            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.9);
+            color: #667eea;
         }
 
         .btn-filter:hover {
@@ -1633,20 +1581,20 @@
         }
 
         .filter-results-summary {
-            background: var(--project-item-bg);
-            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.2);
             padding: 12px 20px;
             border-radius: 8px;
             text-align: center;
             font-weight: 600;
             font-size: 1.1em;
             margin-top: 15px;
+            backdrop-filter: blur(10px);
         }
 
         .filter-results-count {
             font-size: 1.5em;
-            font-family: 'JetBrains Mono', monospace;
-            color: var(--accent-primary);
+            color: #4CAF50;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
         }
 
         .active-filters-pills {
@@ -1657,9 +1605,8 @@
         }
 
         .filter-pill {
-            background: var(--project-item-bg);
-            color: var(--text-primary);
-            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.9);
+            color: #667eea;
             padding: 6px 12px;
             border-radius: 20px;
             font-size: 0.85em;
@@ -1682,13 +1629,12 @@
 
         /* 📊 ЕТАП 5: Визуализации и графики */
         .visualization-panel {
-            background: var(--surface-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            border-radius: 15px;
             padding: 25px;
             margin-bottom: 25px;
-            box-shadow: 0 1px 3px var(--card-shadow);
-            color: var(--text-primary);
+            box-shadow: 0 10px 30px rgba(17, 153, 142, 0.3);
+            color: white;
         }
 
         .visualization-header {
@@ -1699,7 +1645,7 @@
         .visualization-header h3 {
             margin: 0;
             font-size: 1.8em;
-            color: var(--text-primary);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .charts-grid {
@@ -1709,16 +1655,17 @@
         }
 
         .chart-container {
-            background: var(--project-item-bg);
-            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.15);
             border-radius: 10px;
             padding: 20px;
+            backdrop-filter: blur(10px);
             transition: all 0.3s ease;
         }
 
         .chart-container:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px var(--card-shadow);
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
 
         .chart-title {
@@ -1904,7 +1851,7 @@
             <button id="addProjectBtn" class="btn btn-secondary">
                 📋 Добави нов проект
             </button>
-            <button id="advancedFilterBtn" class="btn" style="background: var(--accent-primary); color: white;" onclick="toggleAdvancedFilters()">
+            <button id="advancedFilterBtn" class="btn" style="background: linear-gradient(45deg, #667eea, #764ba2); color: white;" onclick="toggleAdvancedFilters()">
                 🔍 Разширено филтриране
             </button>
             <button id="clearBtn" class="btn" style="background: #ff6b6b; color: white;">
@@ -2482,7 +2429,7 @@
         // 🎨 ЕТАП 7: УПРАВЛЕНИЕ НА ТЕМИ
         
         const THEME_STORAGE_KEY = 'autonomous_theme_preference';
-        let currentTheme = 'dark'; // Default to dark theme like markets
+        let currentTheme = 'light';
         
         // Зареждане на запазената тема
         function loadThemePreference() {
@@ -2508,8 +2455,8 @@
             currentTheme = theme;
             
             // Добавяме data-theme атрибут към HTML
-            if (theme === 'light') {
-                document.documentElement.setAttribute('data-theme', 'light');
+            if (theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
             } else {
                 document.documentElement.removeAttribute('data-theme');
             }
@@ -3441,16 +3388,11 @@
                 error: '❌',
                 info: 'ℹ️'
             };
-            
-            const colors = {
-                success: '#10b981',  // var(--success-color)
-                warning: '#f59e0b',  // var(--warning-color)
-                error: '#ef4444',    // var(--error-color)
-                info: '#3b82f6'      // var(--accent-primary)
-            };
-            
             banner.textContent = icons[type] + ' ' + message;
-            banner.style.background = colors[type] || colors.info;
+            banner.style.background = type === 'success' ? 'linear-gradient(45deg, #4CAF50, #45a049)' :
+                                   type === 'warning' ? 'linear-gradient(45deg, #ff9800, #f57c00)' :
+                                   type === 'error' ? 'linear-gradient(45deg, #f44336, #d32f2f)' :
+                                   'linear-gradient(45deg, #2196f3, #1976d2)';
         }
         
         // 💾 ФУНКЦИИ ЗА ДАННИ
@@ -4222,9 +4164,8 @@
                     .slice(0, 5);
                 
                 const barColors = clientsData.map((_, i) => {
-                    // Use shades of accent-primary color for consistency
-                    const colors = ['#3b82f6', '#60a5fa', '#93c5fd', '#2563eb', '#1d4ed8'];
-                    return colors[i] || '#3b82f6';
+                    const colors = ['#667eea', '#f093fb', '#4facfe', '#43e97b', '#fa709a'];
+                    return colors[i] || '#999';
                 });
                 
                 drawBarChart('clientsBarChart', clientsData, barColors);
